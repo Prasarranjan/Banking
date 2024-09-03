@@ -89,7 +89,6 @@ public class BankServlet extends HttpServlet {
                 GsonBuilder gsonBuilder = new GsonBuilder();
                 Gson gson = gsonBuilder.create();
                 String JSONObject = gson.toJson(listBanks);
-                System.out.print(JSONObject);
                 out.print(JSONObject);
             }catch(Exception e) {
                 e.printStackTrace();
@@ -117,13 +116,10 @@ public class BankServlet extends HttpServlet {
             out.print(JSONObject);
         } else if (event.equals("updateBank1")) {
             try {
-                System.out.println("hahaha");
                 String name = request.getParameter("Name");
                 String email = request.getParameter("Email");
-                System.out.println("email" + email);
                 String phone = request.getParameter("Phone");
                 int id = Integer.parseInt(request.getParameter("Id"));
-                System.out.println("idddddddddddd" + id);
                 Bank u = new Bank();
                 u.setBankName(name);
                 u.setBankEmail(email);
@@ -158,7 +154,6 @@ public class BankServlet extends HttpServlet {
                     GsonBuilder gsonBuilder = new GsonBuilder();
                     Gson gson = gsonBuilder.create();
                     String JSONObject = gson.toJson(listBanks);
-                    System.out.print(JSONObject);
                     out.print(JSONObject);
                 }catch(Exception e) {
                     e.printStackTrace();

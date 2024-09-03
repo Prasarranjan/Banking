@@ -243,7 +243,6 @@
 	    			type:"POST",
 	    			dataType:"json",
 	    			success:function(data,textStatus,jqXHR){ 					 
-	    				console.log(data);	    				
 	    				 let s="";
 	    				 let i=1;
 	    				for (var key in data) {
@@ -259,17 +258,13 @@
 	    					  s+="<a  class='text-info bank_edit' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Edit' data-id='"+data[key].bankId+"' id='"+data[key].bankId+"'><i class='bi bi-pencil-fill'></i></a>";
 	    					  s+="<a  class='text-danger bank_delete' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete' data-id='"+data[key].bankId+"' id='"+data[key].bankId+"'><i class='bi bi-trash-fill'></i></a>";
 	    					  s+="</div></td></tr>";
-                              console.log(data[key].bankId)
 	    					}
 	    					i++;
 	    				}
 	    				$('#viewBank').html(s);
-	    				console.log("success...")
 	    	  		},
 	    		error:function(jqXHR,textStatus,errorThrown){
-	    			console.log(jqXHR.responseText);
                     alert('error')
-	    				console.log("error...")
 	    			}
 	    	    });
 			  }
@@ -315,7 +310,6 @@
 		  		  			}
 	  				},
 					error:function(jqXHR,textStatus,errorThrown){
-						console.log("error...");
 
 
                       $.toast({
@@ -348,7 +342,6 @@
     data:{"id":id,"event":"editBank"},
     dataType:"JSON",
     success: function(response) {
-      console.log("RES",response);
       $("#Id").val(response[0].bankId);
       $("#Name").val(response[0].bankName);
       $("#Email").val(response[0].bankEmail);

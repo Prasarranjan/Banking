@@ -72,7 +72,7 @@
             <div class="card">
                  <div class="card-body">
                    <div class="d-flex align-items-center">
-                      <h5 class="mb-0">Customer Details</h5>
+                      <h5 class="mb-0">Search </h5>
                        <form  idclass="ms-auto position-relative">
 
                          <input class="form-control ps-5" type="text" placeholder="search">

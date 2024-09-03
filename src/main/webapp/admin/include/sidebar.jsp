@@ -2,10 +2,10 @@
        <aside class="sidebar-wrapper" data-simplebar="true">
           <div class="sidebar-header">
             <div>
-              <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+              <img src="assets/images/logo.png" class="logo-icon" alt="logo icon">
             </div>
             <div>
-              <h4 class="logo-text">BANKING</h4>
+              <h4 class="logo-text">E-Money </h4>
             </div>
             <div class="toggle-icon ms-auto"><i class="bi bi-chevron-double-left"></i>
             </div>
