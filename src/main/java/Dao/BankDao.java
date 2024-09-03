@@ -12,6 +12,7 @@ import java.util.List;
 
 public class BankDao {
 
+
     public int saveBank(Bank bank) {
         int status=0;
         try {
@@ -49,5 +50,66 @@ public class BankDao {
         }catch(Exception ex) {ex.printStackTrace();}
         return bankList ;
     }
+    public static int deleteBank(int id){
+        int result = 0;
+        Connection con =DbConnection.getConnection();
+        try{
+            String deleteUser="delete from Bank where bankId=?";
+            PreparedStatement ps = con.prepareStatement(deleteUser);
+            ps.setInt(1,id);
+            result =ps.executeUpdate();
 
-}
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public List<Bank> getBankbyid(int id) {
+        ArrayList<Bank> list=new ArrayList<>();
+        Connection con =DbConnection.getConnection();
+        try {
+            String selectUserbyID="select bankId,bankName,bankEmail,bankPhone,bankImg from Bank where bankId=?";
+            PreparedStatement ps = con.prepareStatement(selectUserbyID);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Bank user = new Bank();
+                user.setBankId(rs.getInt("bankId"));
+                user.setBankName(rs.getString("bankName"));
+                user.setBankPhone(rs.getString("bankPhone"));
+                user.setBankEmail(rs.getString("bankEmail"));
+                user.setBankImg(rs.getString("bankImg"));
+
+                list.add(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public static int updateBank(Bank u) {
+        int result =0;
+        Connection con =DbConnection.getConnection();
+        try{
+            String updateUser="update Bank set bankName=?,bankEmail=?,bankPhone=?,bankImg=?  where bankId=?";
+            PreparedStatement ps =con.prepareStatement(updateUser);
+            ps.setString(1,u.getBankName());
+            ps.setString(2,u.getBankEmail());
+            ps.setString(3,u.getBankPhone());
+            ps.setString(4,u.getBankImg());
+            ps.setInt(5,u.getBankId());
+            result=ps.executeUpdate();
+
+        }
+        catch (Exception f ){
+            f.printStackTrace();
+        }
+        return result;
+    }
+    }
+
+
+
+

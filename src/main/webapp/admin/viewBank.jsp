@@ -100,7 +100,41 @@
                    </div>
                  </div>
                </div>
-          
+            <div class="modal fade" id="addBankModal2" tabindex="-1" aria-labelledby="addBankModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="addBookModalLabel2">Add New Bank</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="updatebank" enctype="multipart/form-data">
+                      <div class="mb-3">
+                        <label for="bankName1" class="form-label">Bank Name</label>
+                        <input type="text" class="form-control" id="bankName1" name="bankName1" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="bankEmail1" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="bankEmail1" name="bankEmail1" required>
+                        <input type="hidden" id="bankId2" name="bankId1" value="">
+                        <input type="hidden" name="event" value="updateBank1">
+
+                      </div>
+                      <div class="mb-3">
+                        <label for="bankPhone1" class="form-label">Phone No</label>
+                        <input type="text" class="form-control" id="bankPhone1" name="bankPhone1" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="bankImage1" class="form-label">Upload Image</label>
+                        <input type="file" class="form-control" id="bankImage1" name="bankImage1" accept="image/*" required>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </main>
        <!--end page main-->
 
@@ -175,7 +209,9 @@
           </div>
         </div>
        </div>
-       <!--end switcher-->
+
+
+    <!--end switcher-->
 
   </div>
   <!--end wrapper-->
@@ -230,40 +266,39 @@
 	    	  		},
 	    		error:function(jqXHR,textStatus,errorThrown){
 	    			console.log(jqXHR.responseText);
+                    alert('error')
 	    				console.log("error...")
 	    			}
 	    	    });
 			  }
 				 $(document).on('click', '.bank_delete', function() {
-					 bankId = $(this).attr('id');
+					 BankId = $(this).attr('id');
 	                 if (confirm('Are you sure you want to delete this?')) {
 	              $.ajax({
 					    type:'POST',
-					    url:'../bankServlet',
-						data:{'bankId':bankId,'event':'bank_delete'},
+					    url:'../BankServlet',
+						data:{'BankId':BankId,'event':'bank_delete'},
 						method:'POST',
-						dataType:'JSON',
-						success:function(data,textStatus,jqXHR){
-	  						if(data.trim() ==='done'){	  							
-	  							$.toast({
-	  		  					    text: "Successfully Deleted!", 
-	  		  					    heading: 'Success...', 
+						// dataType:'JSON',
+                    success:function(data,textStatus,jqXHR){
+                      if(data.trim() ==='done'){
+                        $.toast({
+	  		  					    text: "Successfully Deleted!",
+	  		  					    heading: 'Success...',
 	  		  					    icon: 'success',
-	  		  					    showHideTransition: 'slide', 
-	  		  					    allowToastClose: true, 
-	  		  					    hideAfter: 3000, 
-	  		  					    stack: 10, 
-	  		  					    position: 'top-center',            
-	  		  					    textAlign: 'left',  
-	  		  					    loader: true,  
+	  		  					    showHideTransition: 'slide',
+	  		  					    allowToastClose: true,
+	  		  					    hideAfter: 3000,
+	  		  					    stack: 10,
+	  		  					    position: 'top-center',
+	  		  					    textAlign: 'left',
+	  		  					    loader: true,
 	  		  					    loaderBg: '#24ffb6',
 	  		  					});
-		  		  				$('#msg').html("");
-		  		  			    $('#viewBank').html('');
-		  		  			    getData();
+		  		  				getData();
 	  		  				}else{
 	  		  				$.toast({
-				  		  	    text: "Something went wrong on server!", 
+				  		  	    text: "Something went wrong on code!",
 				  		  	    heading: 'Failed...', 
 				  		  	    icon: 'error', 
 				  		  	    showHideTransition: 'slide', 
@@ -279,7 +314,9 @@
 	  				},
 					error:function(jqXHR,textStatus,errorThrown){
 						console.log("error...");
-						$.toast({
+
+
+                      $.toast({
 			  		  	    text: "Something went wrong on server!", 
 			  		  	    heading: 'Failed...', 
 			  		  	    icon: 'error', 
@@ -294,10 +331,87 @@
 			  		  	});
 	  		  		  }
 				    });	
-	              } //confirm end   
+	              } //confirm end
+
 			  });
 	        });
 		</script>
+<script>$(document).on('click','.bank_edit',function(){
+  let id=$(this).attr('id');
+  $('#addBankModal2').modal('show');
+  $.ajax({
+    type:"Post",
+    url:'../BankServlet',
+    data:{"id":id,"event":"editBank"},
+    dataType:"JSON",
+    success: function(response) {
+      console.log("RES",response);
+      $("#bankName1").val(response[0].bankName);
+      $("#bankEmail1").val(response[0].bankEmail);
+      $("#bankPhone1").val(response[0].bankPhone);
+      $("#bankImage1").val(response[0].bankImg);
+      $("#bankId2").val(response[0].bankId);
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      $.toast({
+        text: "Something went to wrong on server! ",
+        heading: 'Note',
+        icon: 'error',
+        showHideTransition: 'fade',
+        allowToastClose: true,
+        hideAfter: 5000,
+        stack: 5,
+        position: 'top-center',
+        textAlign: 'left',
+        loader: true,
+        loaderBg: '#9EC600',
+      });
+    }
+  });
+
+
+})</script>
+  <script>
+
+    $(document).ready(function(){
+      $("#updatebank").submit(function(event){
+        event.preventDefault();
+        var formData = $(this).serialize();
+
+        $.ajax({
+          url:'../BankServlet',
+          type: "post",
+          data: formData,
+          success: function(response){
+            if(response.trim()==="done"){
+              alert("Successfully updated");
+              window.location.href="viewBank.jsp";
+            }else{
+              alert("Failed to update !");
+            }
+          },
+          error: function(){
+            $.toast({
+              text: "Something went to wrong on server! ",
+              heading: 'Note',
+              icon: 'error',
+              showHideTransition: 'fade',
+              allowToastClose: true,
+              hideAfter: 5000,
+              stack: 5,
+              position: 'top-center',
+              textAlign: 'left',
+              loader: true,
+              loaderBg: '#9EC600',
+            });
+
+          }
+        });
+      });
+    });
+
+  </script>
+
 </body>
 
 </html>

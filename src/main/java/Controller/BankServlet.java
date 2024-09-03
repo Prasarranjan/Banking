@@ -92,6 +92,46 @@ public class BankServlet extends HttpServlet {
             }catch(Exception e) {
                 e.printStackTrace();
             }
+        } else if (event.equals("bank_delete")) {
+            try {
+                int id = Integer.parseInt(request.getParameter("bankId"));
+                int result = BankDao.deleteBank(id);
+                // out.println(result != 0 ? "done" : "failed");
+
+                if (result > 0) {
+                    out.println("done");
+                }
+
+            } catch (NumberFormatException e) {
+                out.println("Invalid ID format");
+            }
+        } else if (event.equals("editBank")) {
+            int id=Integer.parseInt(request.getParameter("id"));
+            BankDao ed= new BankDao();
+            List<Bank> ser=ed.getBankbyid(id);
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            Gson  gson = gsonBuilder.create();
+            String JSONObject = gson.toJson(ser);
+            out.print(JSONObject);
+        } else if (event.equals("updateBank1")) {
+            String name = request.getParameter("bankName1");
+            String email = request.getParameter("bankEmail1");
+            String phone = request.getParameter("bankPhone1");
+            String img = request.getParameter("bankImage1");
+            int id = Integer.parseInt(request.getParameter("bankId1"));
+            Bank u = new Bank();
+            u.setBankName(name);
+            u.setBankEmail(email);
+            u.setBankPhone(phone);
+            u.setBankImg(img);
+            u.setBankId(id);
+            int result =BankDao.updateBank(u);
+            if (result == 1) {
+                out.println("done");
+            }
+            else {
+                out.println("error");
+            }
         }
     }
 
