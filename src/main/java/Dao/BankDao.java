@@ -70,7 +70,7 @@ public class BankDao {
         ArrayList<Bank> list=new ArrayList<>();
         Connection con =DbConnection.getConnection();
         try {
-            String selectUserbyID="select bankId,bankName,bankEmail,bankPhone,bankImg from Bank where bankId=?";
+            String selectUserbyID="select bankId,bankName,bankEmail,bankPhone from Bank where bankId=?";
             PreparedStatement ps = con.prepareStatement(selectUserbyID);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -80,8 +80,6 @@ public class BankDao {
                 user.setBankName(rs.getString("bankName"));
                 user.setBankPhone(rs.getString("bankPhone"));
                 user.setBankEmail(rs.getString("bankEmail"));
-                user.setBankImg(rs.getString("bankImg"));
-
                 list.add(user);
             }
         } catch (Exception e) {
@@ -93,13 +91,12 @@ public class BankDao {
         int result =0;
         Connection con =DbConnection.getConnection();
         try{
-            String updateUser="update Bank set bankName=?,bankEmail=?,bankPhone=?,bankImg=?  where bankId=?";
+            String updateUser="update Bank set bankName=?,bankEmail=?,bankPhone=?  where bankId=?";
             PreparedStatement ps =con.prepareStatement(updateUser);
             ps.setString(1,u.getBankName());
             ps.setString(2,u.getBankEmail());
             ps.setString(3,u.getBankPhone());
-            ps.setString(4,u.getBankImg());
-            ps.setInt(5,u.getBankId());
+            ps.setInt(4,u.getBankId());
             result=ps.executeUpdate();
 
         }
@@ -108,6 +105,7 @@ public class BankDao {
         }
         return result;
     }
+
     }
 
 

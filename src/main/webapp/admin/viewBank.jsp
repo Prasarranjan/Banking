@@ -104,30 +104,31 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="addBookModalLabel2">Add New Bank</h5>
+                    <h5 class="modal-title" id="addBookModalLabel2">Update Bank</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
                     <form id="updatebank" enctype="multipart/form-data">
                       <div class="mb-3">
-                        <label for="bankName1" class="form-label">Bank Name</label>
-                        <input type="text" class="form-control" id="bankName1" name="bankName1" required>
+                        <label for="Name" class="form-label">Bank Name</label>
+                        <input type="hidden" id="Id" name="Id" value="" >
+
+                        <input type="text" class="form-control" id="Name" name="Name" required>
                       </div>
                       <div class="mb-3">
-                        <label for="bankEmail1" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="bankEmail1" name="bankEmail1" required>
-                        <input type="hidden" id="bankId2" name="bankId1" value="">
+                        <label for="Email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="Email" name="Email" required>
                         <input type="hidden" name="event" value="updateBank1">
 
                       </div>
                       <div class="mb-3">
-                        <label for="bankPhone1" class="form-label">Phone No</label>
-                        <input type="text" class="form-control" id="bankPhone1" name="bankPhone1" required>
+                        <label for="Phone" class="form-label">Phone No</label>
+                        <input type="text" class="form-control" id="Phone" name="Phone" required>
                       </div>
-                      <div class="mb-3">
-                        <label for="bankImage1" class="form-label">Upload Image</label>
-                        <input type="file" class="form-control" id="bankImage1" name="bankImage1" accept="image/*" required>
-                      </div>
+<%--                      <div class="mb-3">--%>
+<%--                        <label for="Image" class="form-label">Upload Image</label>--%>
+<%--                        <input type="file" class="form-control" id="Image" name="Image" accept=image/*" required>--%>
+<%--                      </div>--%>
                       <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                   </div>
@@ -258,6 +259,7 @@
 	    					  s+="<a  class='text-info bank_edit' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Edit' data-id='"+data[key].bankId+"' id='"+data[key].bankId+"'><i class='bi bi-pencil-fill'></i></a>";
 	    					  s+="<a  class='text-danger bank_delete' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete' data-id='"+data[key].bankId+"' id='"+data[key].bankId+"'><i class='bi bi-trash-fill'></i></a>";
 	    					  s+="</div></td></tr>";
+                              console.log(data[key].bankId)
 	    					}
 	    					i++;
 	    				}
@@ -336,7 +338,8 @@
 			  });
 	        });
 		</script>
-<script>$(document).on('click','.bank_edit',function(){
+<script>
+  $(document).on('click','.bank_edit',function(){
   let id=$(this).attr('id');
   $('#addBankModal2').modal('show');
   $.ajax({
@@ -346,11 +349,11 @@
     dataType:"JSON",
     success: function(response) {
       console.log("RES",response);
-      $("#bankName1").val(response[0].bankName);
-      $("#bankEmail1").val(response[0].bankEmail);
-      $("#bankPhone1").val(response[0].bankPhone);
-      $("#bankImage1").val(response[0].bankImg);
-      $("#bankId2").val(response[0].bankId);
+      $("#Id").val(response[0].bankId);
+      $("#Name").val(response[0].bankName);
+      $("#Email").val(response[0].bankEmail);
+      $("#Phone").val(response[0].bankPhone);
+      // $("#Image").val(response[0].bankImg);
     },
     error: function (jqXHR, textStatus, errorThrown) {
       $.toast({
@@ -370,8 +373,7 @@
   });
 
 
-})</script>
-  <script>
+})
 
     $(document).ready(function(){
       $("#updatebank").submit(function(event){
@@ -384,7 +386,6 @@
           data: formData,
           success: function(response){
             if(response.trim()==="done"){
-              alert("Successfully updated");
               window.location.href="viewBank.jsp";
             }else{
               alert("Failed to update !");

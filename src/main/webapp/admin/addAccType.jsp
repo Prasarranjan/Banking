@@ -20,7 +20,9 @@
 
   <!-- loader-->
 	<link href="assets/css/pace.min.css" rel="stylesheet" />
-
+  <!--toost-->
+  <link href="assets/jquery-toast/src/jquery.toast.css" rel="stylesheet" />
+  <link href="assets/jquery-toast/dist/jquery.toast.min.css" rel="stylesheet" />
 
   <!--Theme Styles-->
   <link href="assets/css/dark-theme.css" rel="stylesheet" />
@@ -75,9 +77,9 @@
 						<hr/>
 						<div class="card">
 							<div class="card-body">
-							<form>
-								<input class="form-control form-control-lg mb-3" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
-								<input  type="hidden" >
+							<form id="myform">
+								<input class="form-control form-control-lg mb-3" name="actype" id="actype" type="text" placeholder="Add Account Type" aria-label=".form-control-lg example">
+								<input  type="hidden" name="event" value="addacctype" >
 								
 								<input class="form-control btn btn-info" type="Submit" value="submit" >
 							</form>
@@ -181,7 +183,79 @@
   <!--app-->
   <script src="assets/js/app.js"></script>
   <script src="assets/js/index5.js"></script>
-  
+  <!--Toast-->
+  <script src="assets/jquery-toast/src/jquery.toast.js"></script>
+  <script src="assets/jquery-toast/dist/jquery.toast.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      console.log("page is ready .....")
+      $("#myform").on('submit',function(event){
+        event.preventDefault();
+        var f=new FormData($(this)[0]);
+        $.ajax({
+          url:"../BankServlet",
+          data:f,
+          type:'POST',
+          async: false,
+          success:function(data,textStatus,jqXHR){
+            if(data.trim() ==='done'){
+              //alert("successfully inserted")
+              $.toast({
+                text: "Successfully inserted!",
+                heading: 'Success...',
+                icon: 'success',
+                showHideTransition: 'slide',
+                allowToastClose: true,
+                hideAfter: 3000,
+                stack: 10,
+                position: 'top-center',
+                textAlign: 'left',
+                loader: true,
+                loaderBg: '#24ffb6',
+              });
+              $('#myform')[0].reset();
+            }else{
+              $.toast({
+                text: "Something went wrong on server!",
+                heading: 'Failed...',
+                icon: 'error',
+                showHideTransition: 'slide',
+                allowToastClose: true,
+                hideAfter: 3000,
+                stack: 10,
+                position: 'top-center',
+                textAlign: 'left',
+                loader: true,
+                loaderBg: '#9EC600',
+              });
+            }
+          },
+          cache: false,
+          contentType: false,
+          processData: false,
+
+          error:function(jqXHR,textStatus,errorThrown){
+            console.log("error...")
+            $.toast({
+              text: "Something went wrong on server!",
+              heading: 'Failed...',
+              icon: 'error',
+              showHideTransition: 'slide',
+              allowToastClose: true,
+              hideAfter: 3000,
+              stack: 10,
+              position: 'top-center',
+              textAlign: 'left',
+              loader: true,
+              loaderBg: '#9EC600',
+            });
+          }
+        });
+        return false;
+      });
+    });
+  </script>
 
 </body>
 

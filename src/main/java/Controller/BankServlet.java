@@ -2,7 +2,9 @@ package Controller;
 
 
 
+import Bean.AddacType;
 import Bean.Bank;
+import Dao.ActypeDao;
 import Dao.BankDao;
 import Util.DbConnection;
 import com.google.gson.Gson;
@@ -114,24 +116,53 @@ public class BankServlet extends HttpServlet {
             String JSONObject = gson.toJson(ser);
             out.print(JSONObject);
         } else if (event.equals("updateBank1")) {
-            String name = request.getParameter("bankName1");
-            String email = request.getParameter("bankEmail1");
-            String phone = request.getParameter("bankPhone1");
-            String img = request.getParameter("bankImage1");
-            int id = Integer.parseInt(request.getParameter("bankId1"));
-            Bank u = new Bank();
-            u.setBankName(name);
-            u.setBankEmail(email);
-            u.setBankPhone(phone);
-            u.setBankImg(img);
-            u.setBankId(id);
-            int result =BankDao.updateBank(u);
-            if (result == 1) {
-                out.println("done");
+            try {
+                System.out.println("hahaha");
+                String name = request.getParameter("Name");
+                String email = request.getParameter("Email");
+                System.out.println("email" + email);
+                String phone = request.getParameter("Phone");
+                int id = Integer.parseInt(request.getParameter("Id"));
+                System.out.println("idddddddddddd" + id);
+                Bank u = new Bank();
+                u.setBankName(name);
+                u.setBankEmail(email);
+                u.setBankPhone(phone);
+                u.setBankId(id);
+                int result = BankDao.updateBank(u);
+                if (result == 1) {
+                    out.println("done");
+                } else {
+                    out.println("error");
+                }
             }
-            else {
-                out.println("error");
+            catch (Exception e){
+                e.printStackTrace();
             }
+        } else if (event.equals("addacctype")) {
+            String actype=request.getParameter("actype");
+            AddacType bank=new AddacType();
+            bank.setAccTypeName(actype);
+            ActypeDao a=new ActypeDao();
+            int status= a.saveacType(bank);
+            if(status>0) {
+                out.print("done");
+            }else {
+                out.print("failed");
+            }
+        } else if (event.equals("getActype")) {
+
+                try {
+                    ActypeDao ActypeDao=new ActypeDao();
+                    List<AddacType> listBanks = ActypeDao.viewActype();
+                    GsonBuilder gsonBuilder = new GsonBuilder();
+                    Gson gson = gsonBuilder.create();
+                    String JSONObject = gson.toJson(listBanks);
+                    System.out.print(JSONObject);
+                    out.print(JSONObject);
+                }catch(Exception e) {
+                    e.printStackTrace();
+                }
         }
     }
 
