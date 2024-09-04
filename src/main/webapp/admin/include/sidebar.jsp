@@ -49,7 +49,22 @@
                 </li>
               </ul>
             </li>
-            
+
+
+             <li>
+              <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bi bi-award"></i>
+                </div>
+                <div class="menu-title">Branch</div>
+              </a>
+              <ul>
+                <li> <a href="addBranch.jsp"><i class="bi bi-arrow-right-short"></i>Add Branch</a>
+                </li>
+                <li> <a href="ViewBranch.jsp"><i class="bi bi-arrow-right-short"></i>View Branch</a>
+                </li>
+              </ul>
+            </li>
+
             
            
             
