@@ -95,7 +95,7 @@
                             <th>Updated By</th>
                             <th>Status</th>
                             <th>Action</th>
-                            <th>Handle</th>
+                            <th>View</th>
 
                         </tr>
                         </thead>
@@ -285,10 +285,12 @@
                                 s += "<td>" + data[key].updatedBy + "</td>";
                                 s += "<td><span class='badge bg-success'>Active</span></td>";
                                 s += "<td><div class='table-actions d-flex align-items-center gap-3 fs-6'>";
-                                s += "<a  class='text-info bank_edit' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Edit' data-id='" + data[key].branchId + "' id='" + data[key].branchId + "'><i class='bi bi-pencil-fill'></i></a>";
-                                s += "<a  class='text-danger bank_delete' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete' data-id='" + data[key].branchId + "' id='" + data[key].branchId + "'><i class='bi bi-trash-fill'></i></a>";
+                                s += "<a class='text-info bank_edit' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Edit' data-id='" + data[key].branchId + "' id='" + data[key].branchId + "'><i class='bi bi-pencil-fill'></i></a>";
+                                s += "<a class='text-danger bank_delete' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete' data-id='" + data[key].branchId + "' id='" + data[key].branchId + "'><i class='bi bi-trash-fill'></i></a>";
+                                s += "<td><a class='text-success bank_view' href='viewbranchdetails.jsp?branchId=" + data[key].branchId + "' data-bs-toggle='tooltip' data-bs-placement='bottom' title='View' style='color: #fff; background-color: #28a745; border-radius: 5px; padding: 5px 10px; text-decoration: none;'><i class='bi bi-eye'></i> View</a></td>";
                                 s += "</div></td></tr>";
                                 i++;
+
                             } else {
                                 s += "<tr>";
                                 s += "<td>" + i + "</td>";
@@ -299,9 +301,10 @@
                                 s += "<td>" + data[key].createdBy + "</td>";
                                 s += "<td>" + data[key].updatedDate + "</td>";
                                 s += "<td>" + data[key].updatedBy + "</td>";
-                                s += "<td><span class='badge bg-secondary'>Deactive</span></td>";
+                                s += "<td><span class='badge bg-warning'>Deactive</span></td>";
                                 s += "<td><div class='table-actions d-flex align-items-center gap-3 fs-6'>";
                                 s += "<a  class='text-info bank_edit' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Edit' data-id='" + data[key].branchId + "' id='" + data[key].branchId + "'><i class='bi bi-pencil-fill'></i></a>";
+                                s += "<td><a class='text-success bank_view' href='viewbranchdetails.jsp?branchId=" + data[key].branchId + "' data-bs-toggle='tooltip' data-bs-placement='bottom' title='View' style='color: #fff; background-color: #28a745; border-radius: 5px; padding: 5px 10px; text-decoration: none;'><i class='bi bi-eye'></i> View</a></td>";
 
                                 s += "</div></td></tr>";
                                 i++;
@@ -440,6 +443,19 @@
                 data: formData,
                 success: function(response){
                     if(response.trim()=="done"){
+                        $.toast({
+                            text: "Updated Successfully!",
+                            heading: 'Success...',
+                            icon: 'success',
+                            showHideTransition: 'slide',
+                            allowToastClose: true,
+                            hideAfter: 3000,
+                            stack: 10,
+                            position: 'top-center',
+                            textAlign: 'left',
+                            loader: true,
+                            loaderBg: '#24ffb6',
+                        });
                         window.location.href="ViewBranch.jsp";
                     }else{
                         alert("Failed to update !");

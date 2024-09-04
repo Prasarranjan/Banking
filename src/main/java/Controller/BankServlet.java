@@ -198,12 +198,10 @@ public class BankServlet extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("branchid"));
                 int result = BranchDao.deactiveBranch(id);
                 // out.println(result != 0 ? "done" : "failed");
-            System.out.println("ae jake hauchi");
                 if (result >0 ) {
                     out.println("done");
                 }
                 else {
-                    System.out.println("helani ma");
                     out.println("failed");
                 }
 
@@ -226,7 +224,6 @@ public class BankServlet extends HttpServlet {
                 String updatedby = request.getParameter("updatedby");
                 boolean active = Boolean.parseBoolean(request.getParameter("active"));
                 int id = Integer.parseInt(request.getParameter("branchid"));
-                System.out.println(id);
                 Branch u = new Branch();
                 u.setBranchName(name);
                 u.setLocation(loc);
