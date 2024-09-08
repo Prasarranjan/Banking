@@ -118,7 +118,7 @@ public class CustomerDao {
         ArrayList<customer> list=new ArrayList<>();
         Connection con =DbConnection.getConnection();
         try {
-            String selectUserbyID="select custId,custFname, custLname, custEmail, custPhone, custRedg, custDOB, custAddress,  custPass,  custImg from customer where custId=?";
+            String selectUserbyID="select custId,custFname, custLname, custEmail, custPhone,  custDOB, custAddress,  custPass,  custImg from customer where custId=?";
             PreparedStatement ps = con.prepareStatement(selectUserbyID);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -129,7 +129,6 @@ public class CustomerDao {
                 user.setCustLname(rs.getString("custLname"));
                 user.setCustEmail(rs.getString("custEmail"));
                 user.setCustPhone(rs.getString("custPhone"));
-                user.setCustRedg(rs.getString("custRedg"));
                 user.setCustDOB(rs.getString("custDOB"));
                 user.setCustAddress(rs.getString("custAddress"));
                 user.setCustPass(rs.getString("custPass"));
@@ -145,17 +144,16 @@ public class CustomerDao {
         int result =0;
         Connection con =DbConnection.getConnection();
         try{
-            String updateUser="update customer set custFname=?, custLname=?, custEmail=?, custPhone=?, custRedg=?, custDOB=?, custAddress=?,  custPass=?  where custId=?";
+            String updateUser="update customer set custFname=?, custLname=?, custEmail=?, custPhone=?,  custDOB=?, custAddress=?,  custPass=?  where custId=?";
             PreparedStatement ps =con.prepareStatement(updateUser);
             ps.setString(1,u.getCustFname());
             ps.setString(2,u.getCustLname());
             ps.setString(3,u.getCustEmail());
             ps.setString(4,u.getCustPhone());
-            ps.setString(5,u.getCustRedg());
-            ps.setString(6,u.getCustDOB());
-            ps.setString(7,u.getCustAddress());
-            ps.setString(8,u.getCustPass());
-            ps.setInt(9,u.getCustId());
+            ps.setString(5,u.getCustDOB());
+            ps.setString(6,u.getCustAddress());
+            ps.setString(7,u.getCustPass());
+            ps.setInt(8,u.getCustId());
             result=ps.executeUpdate();
 
         }

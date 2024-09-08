@@ -365,6 +365,8 @@ public class BankServlet extends HttpServlet {
             catch (Exception e){
                 e.printStackTrace();
             }
+        } else if (event.equals("addAdmin")) {
+
         }
     }
     }
