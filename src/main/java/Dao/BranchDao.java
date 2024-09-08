@@ -122,5 +122,26 @@ public class BranchDao {
         }
         return result;
     }
+
+    public List<Branch>  branchname(int BankId) {
+        ArrayList<Branch> list = new ArrayList<>();
+        try {
+            Connection con =DbConnection.getConnection();
+            String sql = "SELECT branchId, branchName FROM branch WHERE BankId = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, BankId);  // Set the dynamic clubId
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Branch br = new Branch();
+                br.setBranchId(rs.getInt("branchId"));
+                br.setBranchName(rs.getString("branchName"));
+                list.add(br);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
+}
 

@@ -65,6 +65,35 @@
               </ul>
             </li>
 
+
+              <li>
+              <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bi bi-award"></i>
+                </div>
+                <div class="menu-title">Account</div>
+              </a>
+              <ul>
+                <li> <a href="addAccount.jsp"><i class="bi bi-arrow-right-short"></i>Add Account</a>
+                </li>
+                <li> <a href="ViewAccount.jsp"><i class="bi bi-arrow-right-short"></i>View Account</a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bi bi-award"></i>
+                </div>
+                <div class="menu-title">Customer</div>
+              </a>
+              <ul>
+                <li> <a href="AddCustomer.jsp"><i class="bi bi-arrow-right-short"></i>Add Customer</a>
+                </li>
+                <li> <a href="ViewCustomer.jsp"><i class="bi bi-arrow-right-short"></i>View Customer</a>
+                </li>
+              </ul>
+            </li>
+
             
            
             

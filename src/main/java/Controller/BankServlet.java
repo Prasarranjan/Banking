@@ -2,9 +2,11 @@ package Controller;
 import Bean.AddacType;
 import Bean.Bank;
 import Bean.Branch;
+import Bean.customer;
 import Dao.ActypeDao;
 import Dao.BankDao;
 import Dao.BranchDao;
+import Dao.CustomerDao;
 import Util.DbConnection;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -245,6 +247,62 @@ public class BankServlet extends HttpServlet {
             catch (Exception e){
                 e.printStackTrace();
             }
+        } else if (event.equals("getBranchFromBank")) {
+            int BankId = Integer.parseInt(request.getParameter("bankId"));  // Get the clubId from request
+            BranchDao ed = new BranchDao();
+            List<Branch> sportsList = ed.branchname(BankId);
+            Branch sp=new Branch();
+            Gson gson = new GsonBuilder().create();
+            String jsonResponse = gson.toJson(sportsList);  // Convert list to JSON
+            out.print(jsonResponse);  // Return JSON response to AJAX
+
+        } else if (event.equals("addCustomer")) {
+            String custFname=request.getParameter("custFname");
+            String custLname=request.getParameter("custLname");
+            String custEmail=request.getParameter("custEmail");
+            String custPass=request.getParameter("custPass");
+            String custDOB=request.getParameter("custDOB");
+            String custPhone=request.getParameter("custPhone");
+            String custAddress=request.getParameter("custAddress");
+            String custuserId=request.getParameter("custuserId");
+            //image start
+            Part p1=request.getPart("custImg");
+            String Path= DbConnection.Path();
+            String appPath =Path+"/costumerImage";
+            String imagePath = appPath + "";
+            File fileDir = new File(imagePath);
+            if (!fileDir.exists())
+                fileDir.mkdirs();
+            //Get Image Name
+            String imageName1 = p1.getSubmittedFileName();
+            String fileExt1 = imageName1.substring(imageName1.length()-3);
+            String imgname1=new Date().getTime() +"1"+"."+fileExt1;
+
+            if(validateImage1(imageName1)){
+                try{
+                    p1.write(imagePath + "/" + imgname1);
+                }catch (Exception ex) { }
+            }else{ out.print("<script> alert('Invalid Image Format')</script>");  }
+            //img end
+            customer cs=new customer();
+            cs.setCustFname(custFname);
+            cs.setCustLname(custLname);
+            cs.setCustEmail(custEmail);
+            cs.setCustPass(custPass);
+            cs.setCustDOB(custDOB);
+            cs.setCustPhone(custPhone);
+            cs.setCustAddress(custAddress);
+            cs.setCustImg(imgname1);
+            cs.setCustUserId(custuserId);
+
+            CustomerDao csd=new CustomerDao();
+            int status=csd.saveCustomer(cs);
+            if(status>0) {
+                out.print("done");
+            }else {
+                out.print("failed");
+            }
+
         }
     }
     }
