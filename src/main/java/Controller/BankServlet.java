@@ -293,7 +293,7 @@ public class BankServlet extends HttpServlet {
             cs.setCustPhone(custPhone);
             cs.setCustAddress(custAddress);
             cs.setCustImg(imgname1);
-            cs.setCustUserId(custuserId);
+//            cs.setCustUserId(custuserId);
 
             CustomerDao csd=new CustomerDao();
             int status=csd.saveCustomer(cs);
@@ -303,6 +303,68 @@ public class BankServlet extends HttpServlet {
                 out.print("failed");
             }
 
+        }
+        else if (event.equals("getCustomer")){
+            try {
+                CustomerDao cs=new CustomerDao();
+                List<customer> listBanks = cs.viewCustomer();
+                GsonBuilder gsonBuilder = new GsonBuilder();
+                Gson gson = gsonBuilder.create();
+                String JSONObject = gson.toJson(listBanks);
+                out.print(JSONObject);
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        } else if (event.equals("custDelete")) {
+            try {
+                int id = Integer.parseInt(request.getParameter("custId"));
+                int result = CustomerDao.deleteCutomer(id);
+                // out.println(result != 0 ? "done" : "failed");
+
+                if (result > 0) {
+                    out.println("done");
+                }
+
+            } catch (NumberFormatException e) {
+                out.println("Invalid ID format");
+            }
+        } else if (event.equals("editCust")) {
+            int id=Integer.parseInt(request.getParameter("id"));
+            CustomerDao ed= new CustomerDao();
+            List<customer> ser=ed.getCustbyid(id);
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            Gson  gson = gsonBuilder.create();
+            String JSONObject = gson.toJson(ser);
+            out.print(JSONObject);
+        } else if (event.equals("updateCustomer")) {
+            try {
+                String custFname = request.getParameter("custFname");
+                String custLname = request.getParameter("custLname");
+                String custEmail = request.getParameter("custEmail");
+                String custPass = request.getParameter("custPass");
+                String custDOB = request.getParameter("custDOB");
+                String custPhone = request.getParameter("custPhone");
+                String custAddress = request.getParameter("custAddress");
+                int id = Integer.parseInt(request.getParameter("custId"));
+                customer u = new customer();
+               u.setCustFname(custFname);
+               u.setCustLname(custLname);
+               u.setCustEmail(custEmail);
+               u.setCustPass(custPass);
+               u.setCustDOB(custDOB);
+               u.setCustPhone(custPhone);
+               u.setCustAddress(custAddress);
+               u.setCustId(id);
+                int result = CustomerDao.updateCust(u);
+                if (result == 1) {
+                    out.println("done");
+                } else {
+                    out.println("error");
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
     }

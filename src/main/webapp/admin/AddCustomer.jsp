@@ -74,7 +74,7 @@
 
         <div class="row">
             <div class="col-xl-9 mx-auto">
-                <h6 class="mb-0 text-uppercase">Add Bank</h6>
+                <h6 class="mb-0 text-uppercase">Add Customer</h6>
                 <hr/>
                 <div class="card">
                     <div class="card-body">
@@ -85,7 +85,7 @@
                             <!-- Last Name -->
                             <input class="form-control form-control-lg mb-3" type="text" name="custLname" placeholder="Enter Last Name" aria-label=".form-control-lg example" required>
 
-                            <input class="form-control form-control-lg mb-3" type="text" name="custuserId" placeholder="Enter User Id" aria-label=".form-control-lg example" required>
+<%--                            <input class="form-control form-control-lg mb-3" type="text" name="custuserId" placeholder="Enter User Id" aria-label=".form-control-lg example" required>--%>
 
                             <!-- Email -->
                             <input class="form-control form-control-lg mb-3" type="email" name="custEmail" placeholder="Enter Email" aria-label=".form-control-lg example" required>
