@@ -13,6 +13,18 @@
         .card-body {
             background-color: #f8f9fa;
         }
+        .profile-image-container {
+            width: 200px; /* Adjust size as needed */
+            height: 200px; /* Adjust size as needed */
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
@@ -22,8 +34,13 @@
             <h4 class="card-title">Branch Details</h4>
         </div>
         <div class="card-body">
-            <%-- Sample branch data --%>
             <div class="row">
+                <!-- Profile Image -->
+                <div class="col-md-12 text-center">
+                    <div class="profile-image-container">
+                        <img src="assets/bankImg/17253013404931.png" id="profileImage" class="profile-image" alt="Branch Image">
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <h5>Branch Name</h5>
                     <p id="branchName">Axis Bank</p>

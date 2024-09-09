@@ -75,7 +75,7 @@
               <ul>
                 <li> <a href="addAccount.jsp"><i class="bi bi-plus-circle-fill"></i>Add Account</a>
                 </li>
-                <li> <a href="ViewAccount.jsp"><i class="bi bi-eye-fill"></i>View Account</a>
+                <li> <a href="Maintainance.jsp"><i class="bi bi-eye-fill"></i>View Account</a>
                 </li>
               </ul>
             </li>
@@ -107,6 +107,36 @@
                 </li>
               </ul>
             </li>
+
+            <li>
+              <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bi bi-cash-stack"></i>
+                </div>
+                <div class="menu-title">Transaction</div>
+              </a>
+              <ul>
+<%--                <li> <a href="Addadmin.jsp"><i class="bi bi-plus-circle-fill"></i>Add Admin</a>--%>
+<%--                </li>--%>
+                <li> <a href="Maintainance.jsp"><i class="bi bi-eye-fill"></i>View Transaction</a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bi bi-person-badge"></i>
+                </div>
+                <div class="menu-title">Biller</div>
+              </a>
+              <ul>
+<%--                <li> <a href="Addadmin.jsp"><i class="bi bi-plus-circle-fill"></i>Add Admin</a>--%>
+<%--                </li>--%>
+                <li> <a href="Maintainance.jsp"><i class="bi bi-eye-fill"></i>View Biller</a>
+                </li>
+              </ul>
+            </li>
+
+
 
             
            

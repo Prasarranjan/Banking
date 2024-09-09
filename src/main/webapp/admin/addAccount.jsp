@@ -177,12 +177,12 @@
                     <label class="form-check-label" for="DarkTheme">Dark</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="SemiDarkTheme" value="option3">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="SemiDarkTheme" value="option3" >
                     <label class="form-check-label" for="SemiDarkTheme">Semi Dark</label>
                 </div>
                 <hr>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="MinimalTheme" value="option3" checked>
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="MinimalTheme" value="option3"checked >
                     <label class="form-check-label" for="MinimalTheme">Minimal Theme</label>
                 </div>
                 <hr/>

@@ -79,7 +79,7 @@
                     <h5 class="mb-0">Branch Details</h5>
                     <form class="ms-auto position-relative">
                         <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-search"></i></div>
-                        <input class="form-control ps-5" type="text" placeholder="search">
+                        <input class="form-control ps-5" type="text" id="searchInput" placeholder="search">
                     </form>
                 </div>
                 <div class="table-responsive mt-3">
@@ -110,7 +110,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addBookModalLabel2">Update Bank</h5>
+                        <h5 class="modal-title" id="addBookModalLabel2">Update Branch</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -456,7 +456,7 @@
                             loader: true,
                             loaderBg: '#24ffb6',
                         });
-                        window.location.href="ViewBranch.jsp";
+                         window.location.href="ViewBranch.jsp";
                     }else{
                         alert("Failed to update !");
                     }
@@ -482,7 +482,38 @@
     });
 
 </script>
+<script>
+    // Get the input field and the table
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.getElementById('viewBank');
 
+    // Add event listener to the input field
+    searchInput.addEventListener('keyup', function() {
+        const searchText = searchInput.value.toLowerCase();
+        const rows = tableBody.getElementsByTagName('tr');
+
+        // Loop through all table rows
+        for (let i = 0; i < rows.length; i++) {
+            const row = rows[i];
+            let matchFound = false;
+
+            // Check each cell in the row
+            const cells = row.getElementsByTagName('td');
+            for (let j = 0; j < cells.length; j++) {
+                const cellText = cells[j].textContent || cells[j].innerText;
+
+                // If match is found in the cell, show the row
+                if (cellText.toLowerCase().includes(searchText)) {
+                    matchFound = true;
+                    break;
+                }
+            }
+
+            // Show or hide the row based on the match
+            row.style.display = matchFound ? '' : 'none';
+        }
+    });
+</script>
 </body>
 
 </html>
