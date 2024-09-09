@@ -129,7 +129,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="custPass" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="custPass" name="custPass" required>
+                                <input type="text" class="form-control" id="custPass" name="custPass" required>
                             </div>
                             <div class="mb-3">
                                 <label for="custDOB" class="form-label">Date of Birth</label>
