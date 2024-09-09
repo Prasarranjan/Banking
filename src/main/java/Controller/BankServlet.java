@@ -432,6 +432,14 @@ public class BankServlet extends HttpServlet {
             Gson gson = gsonBuilder.create();
             String JSONObject = gson.toJson(ser);
             out.print(JSONObject);
+        } else if (event.equals("branchdetails")) {
+            int id = Integer.parseInt(request.getParameter("branchId"));
+            BranchDao ed = new BranchDao();
+            List<BranchDetails> ser = ed.branchdetails(id);
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            Gson gson = gsonBuilder.create();
+            String JSONObject = gson.toJson(ser);
+            out.print(JSONObject);
         }
     }
 }

@@ -2,6 +2,7 @@ package Dao;
 
 import Bean.Bank;
 import Bean.Branch;
+import Bean.BranchDetails;
 import Util.DbConnection;
 
 import java.sql.Connection;
@@ -139,6 +140,41 @@ public class BranchDao {
                 list.add(br);
             }
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<BranchDetails> branchdetails(int BranchId) {
+        ArrayList<BranchDetails> list = new ArrayList<>();
+        try {
+            Connection con =DbConnection.getConnection();
+            String sql = "SELECT b.branchId, b.branchName, b.location, b.createdDate, b.createdBy, b.updatedDate, b.updatedBy, b.IsActive, b.bankId, bn.bankName, bn.bankImg " +
+                    "FROM branch b " +
+                    "INNER JOIN Bank bn ON b.bankId = bn.bankId " +
+                    "WHERE b.branchId = ?";
+
+              PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setInt(1, BranchId);
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                BranchDetails details = new BranchDetails();
+                details.setBranchId(rs.getInt("branchId"));
+                details.setBranchName(rs.getString("branchName"));
+                details.setLocation(rs.getString("location"));
+                details.setCreatedDate(rs.getString("createdDate"));
+                details.setCreatedBy(rs.getString("createdBy"));
+                details.setUpdatedDate(rs.getString("updatedDate"));
+                details.setUpdatedBy(rs.getString("updatedBy"));
+                details.setActive(rs.getBoolean("IsActive"));
+                details.setBankId(rs.getInt("bankId"));
+                details.setBankName(rs.getString("bankName"));
+                details.setBankImg(rs.getString("bankImg"));
+                list.add(details);
+
+                }
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         return list;
