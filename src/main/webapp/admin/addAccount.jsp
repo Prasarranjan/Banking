@@ -87,6 +87,7 @@
                             <div class="mb-3">
                                 <label for="firstName" class="form-label">First Name</label>
                                 <input id="firstName" class="form-control form-control-lg" type="text" name="firstName" placeholder="Enter First Name" required>
+                                <input type="hidden" name="event" value="addaccount">
                             </div>
                             <div class="mb-3">
                                 <label for="middleName" class="form-label">Middle Name</label>
@@ -145,7 +146,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="branchSelect" class="form-label">Select Branch</label>
-                                <select id="branchSelect" name="branchId" class="form-select form-control-lg" required>
+                                <select id="branchSelect" name="branchId" class="form-select form-control-lg" >
                                     <!-- Branch options will be dynamically populated -->
                                 </select>
                             </div>
@@ -320,77 +321,6 @@
         });
     });
 
-</script>
-<script>
-    $(document).ready(function(){
-        console.log("page is ready .....")
-        $("#myform").on('submit',function(event){
-            event.preventDefault();
-            var branchId = $(this).val();
-            $('#branchid').val(branchId);
-            console.log(branchId)
-            var f=new FormData($(this)[0]);
-            $.ajax({
-                url:"../BankServlet",
-                data:f,
-                type:'POST',
-                async: false,
-                success:function(data,textStatus,jqXHR){
-                    if(data.trim() ==='done'){
-                        $.toast({
-                            text: "Successfully insert!",
-                            heading: 'Success...',
-                            icon: 'success',
-                            showHideTransition: 'slide',
-                            allowToastClose: true,
-                            hideAfter: 3000,
-                            stack: 10,
-                            position: 'top-center',
-                            textAlign: 'left',
-                            loader: true,
-                            loaderBg: '#24ffb6',
-                        });
-                        $('#myform')[0].reset();
-                    }else{
-                        $.toast({
-                            text: "Something went wrong on server!",
-                            heading: 'Failed...',
-                            icon: 'error',
-                            showHideTransition: 'slide',
-                            allowToastClose: true,
-                            hideAfter: 3000,
-                            stack: 10,
-                            position: 'top-center',
-                            textAlign: 'left',
-                            loader: true,
-                            loaderBg: '#9EC600',
-                        });
-                    }
-                },
-                cache: false,
-                contentType: false,
-                processData: false,
-
-                error:function(jqXHR,textStatus,errorThrown){
-                    console.log("error...")
-                    $.toast({
-                        text: "Something went wrong on server!",
-                        heading: 'Failed...',
-                        icon: 'error',
-                        showHideTransition: 'slide',
-                        allowToastClose: true,
-                        hideAfter: 3000,
-                        stack: 10,
-                        position: 'top-center',
-                        textAlign: 'left',
-                        loader: true,
-                        loaderBg: '#9EC600',
-                    });
-                }
-            });
-            return false;
-        });
-    });
 </script>
 <script>
     $(document).ready(function(){
