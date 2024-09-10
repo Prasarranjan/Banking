@@ -82,60 +82,89 @@
                 <div class="card">
                     <div class="card-body">
                         <form id="myform">
-                            <!-- Dropdown for selecting bank -->
+                            <!-- Section 1: Applicant Information -->
+                            <h5 class="form-label">Applicant Information</h5>
+                            <div class="mb-3">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input id="firstName" class="form-control form-control-lg" type="text" name="firstName" placeholder="Enter First Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="middleName" class="form-label">Middle Name</label>
+                                <input id="middleName" class="form-control form-control-lg" type="text" name="middleName" placeholder="Enter Middle Name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input id="lastName" class="form-control form-control-lg" type="text" name="lastName" placeholder="Enter Last Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input id="email" class="form-control form-control-lg" type="email" name="email" placeholder="Enter Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input id="phone" class="form-control form-control-lg" type="tel" name="phone" placeholder="Enter Phone Number" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <input id="address" class="form-control form-control-lg" type="text" name="address" placeholder="Enter Address" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="aadhaar" class="form-label">Aadhaar Number</label>
+                                <input id="aadhaar" class="form-control form-control-lg" type="text" name="aadhaar" placeholder="Enter Aadhaar Number" required>
+                            </div>
+                            <!-- New Image Upload Field -->
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Upload Image</label>
+                                <input id="image" class="form-control form-control-lg" type="file" name="image" accept="image/*" required>
+                            </div>
 
-                            <label for="bankSelect" class="form-label">Select Bank</label>
-                            <select id="bankSelect" name="bankId" class="form-select form-control-lg mb-3" aria-label=".form-select-lg example" required>
-                                <option value="">Select Bank</option>
-                                <%
-                                    try {
-                                        Connection con = DbConnection.getConnection();
-                                        String sql1 = "SELECT bankId, bankName FROM Bank";
-                                        PreparedStatement ps = con.prepareStatement(sql1);
-                                        ResultSet rs = ps.executeQuery();
-
-                                        while (rs.next()) {
-                                            int bankId = rs.getInt("bankId");
-                                            String bankName = rs.getString("bankName");
-                                %>
-                                <option value="<%= bankId %>"><%= bankName %></option>
-                                <%
+                            <!-- Section 2: Bank Details -->
+                            <h5 class="form-label">Bank Details</h5>
+                            <div class="mb-3">
+                                <label for="bankSelect" class="form-label">Select Bank</label>
+                                <select id="bankSelect" name="bankId" class="form-select form-control-lg" required>
+                                    <option value="">Select Bank</option>
+                                    <%
+                                        try {
+                                            Connection con = DbConnection.getConnection();
+                                            String sql1 = "SELECT bankId, bankName FROM Bank";
+                                            PreparedStatement ps = con.prepareStatement(sql1);
+                                            ResultSet rs = ps.executeQuery();
+                                            while (rs.next()) {
+                                                int bankId = rs.getInt("bankId");
+                                                String bankName = rs.getString("bankName");
+                                    %>
+                                    <option value="<%= bankId %>"><%= bankName %></option>
+                                    <%
+                                            }
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
                                         }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                %>
-                            </select>
-                            <input type="hidden" id="bankId" name="bankId" value="">
-                            <!-- Dropdown for selecting branch based on bank selection -->
-                            <label for="branchSelect" class="form-label">Select Branch</label>
-                            <select id="branchSelect" name="branchId" class="form-select form-control-lg mb-3" aria-label=".form-select-lg example" required>
+                                    %>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="branchSelect" class="form-label">Select Branch</label>
+                                <select id="branchSelect" name="branchId" class="form-select form-control-lg" required>
+                                    <!-- Branch options will be dynamically populated -->
+                                </select>
+                            </div>
 
-                            </select>
-
-                            <!-- Branch Name -->
-                            <label for="bname" class="form-label">Branch Name</label>
-                            <input id="bname" class="form-control form-control-lg mb-3" type="text" name="bname" placeholder="Enter Branch Name" aria-label=".form-control-lg example" required>
-
-                            <!-- Branch Location -->
-                            <label for="bloc" class="form-label">Branch Location</label>
-                            <input id="bloc" class="form-control form-control-lg mb-3" type="text" name="bloc" placeholder="Enter Branch Location" aria-label=".form-control-lg example" required>
-
-                            <!-- Created Date -->
-                            <label for="createdDate" class="form-label">Created Date</label>
-                            <input id="createdDate" class="form-control form-control-lg mb-3" type="date" name="createdDate" aria-label=".form-control-lg example" required>
-
-                            <!-- Created By -->
-                            <label for="createdBy" class="form-label">Created By</label>
-                            <input id="createdBy" class="form-control form-control-lg mb-3" type="text" name="createdBy" placeholder="Enter Creator's Name" aria-label=".form-control-lg example" required>
-
-                            <!-- Updated Date -->
-                            <label for="updatedDate" class="form-label">Updated Date</label>
-                            <input id="updatedDate" class="form-control form-control-lg mb-3" type="date" name="updatedDate" aria-label=".form-control-lg example">
-
-                            <!-- Updated By -->
-                            <label for="updatedBy" class="form-label">Updated By</label>
-                            <input id="updatedBy" class="form-control form-control-lg mb-3" type="text" name="updatedBy" placeholder="Enter Updater's Name" aria-label=".form-control-lg example">
+                            <!-- Section 3: Account Details -->
+                            <h5 class="form-label">Account Details</h5>
+                            <div class="mb-3">
+                                <label for="accountType" class="form-label">Account Type</label>
+                                <select id="accountType" name="accountType" class="form-select form-control-lg" required>
+                                    <option value="">Select Account Type</option>
+                                    <option value="Savings">Savings</option>
+                                    <option value="Current">Current</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="balance" class="form-label">Balance</label>
+                                <input id="balance" class="form-control form-control-lg" type="number" name="balance" required>
+                                <span class="text-muted">Minimum balance is 500</span>
+                            </div>
 
                             <!-- Submit Button -->
                             <input class="form-control btn btn-info" type="submit" value="Submit">
@@ -273,7 +302,7 @@
                 }
             });
         });
-        });
+    });
 
 </script>
 <script>

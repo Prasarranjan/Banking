@@ -35,23 +35,8 @@
                 </li>
               </ul>
             </li>
-            
+
             <li>
-              <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bi bi-wallet"></i>
-                </div>
-                <div class="menu-title">Account Type</div>
-              </a>
-              <ul>
-                <li> <a href="addAccType.jsp"><i class="bi bi-plus-circle-fill"></i>Add Account Type</a>
-                </li>
-                <li> <a href="viewAccType.jsp"><i class="bi bi-eye-fill"></i>View Account Type</a>
-                </li>
-              </ul>
-            </li>
-
-
-             <li>
               <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bi bi-house-door-fill"></i>
                 </div>
@@ -61,21 +46,6 @@
                 <li> <a href="addBranch.jsp"><i class="bi bi-plus-circle-fill"></i>Add Branch</a>
                 </li>
                 <li> <a href="ViewBranch.jsp"><i class="bi bi-eye-fill"></i>View Branch</a>
-                </li>
-              </ul>
-            </li>
-
-
-              <li>
-              <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bi bi-cash-coin"></i>
-                </div>
-                <div class="menu-title">Account</div>
-              </a>
-              <ul>
-                <li> <a href="addAccount.jsp"><i class="bi bi-plus-circle-fill"></i>Add Account</a>
-                </li>
-                <li> <a href="Maintainance.jsp"><i class="bi bi-eye-fill"></i>View Account</a>
                 </li>
               </ul>
             </li>
@@ -96,17 +66,36 @@
 
             <li>
               <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bi bi-person-check"></i>
+                <div class="parent-icon"><i class="bi bi-wallet"></i>
                 </div>
-                <div class="menu-title">Admin</div>
+                <div class="menu-title">Account Type</div>
               </a>
               <ul>
-                <li> <a href="Addadmin.jsp"><i class="bi bi-plus-circle-fill"></i>Add Admin</a>
+                <li> <a href="addAccType.jsp"><i class="bi bi-plus-circle-fill"></i>Add Account Type</a>
                 </li>
-                <li> <a href="Viewadmin.jsp"><i class="bi bi-eye-fill"></i>View Admin</a>
+                <li> <a href="viewAccType.jsp"><i class="bi bi-eye-fill"></i>View Account Type</a>
                 </li>
               </ul>
             </li>
+
+
+
+
+
+              <li>
+              <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bi bi-cash-coin"></i>
+                </div>
+                <div class="menu-title">Account</div>
+              </a>
+              <ul>
+                <li> <a href="addAccount.jsp"><i class="bi bi-plus-circle-fill"></i>Add Account</a>
+                </li>
+                <li> <a href="Maintainance.jsp"><i class="bi bi-eye-fill"></i>View Account</a>
+                </li>
+              </ul>
+            </li>
+
 
             <li>
               <a href="javascript:;" class="has-arrow">
@@ -115,8 +104,8 @@
                 <div class="menu-title">Transaction</div>
               </a>
               <ul>
-<%--                <li> <a href="Addadmin.jsp"><i class="bi bi-plus-circle-fill"></i>Add Admin</a>--%>
-<%--                </li>--%>
+                <%--                <li> <a href="Addadmin.jsp"><i class="bi bi-plus-circle-fill"></i>Add Admin</a>--%>
+                <%--                </li>--%>
                 <li> <a href="Maintainance.jsp"><i class="bi bi-eye-fill"></i>View Transaction</a>
                 </li>
               </ul>
@@ -129,12 +118,30 @@
                 <div class="menu-title">Biller</div>
               </a>
               <ul>
-<%--                <li> <a href="Addadmin.jsp"><i class="bi bi-plus-circle-fill"></i>Add Admin</a>--%>
-<%--                </li>--%>
+                <%--                <li> <a href="Addadmin.jsp"><i class="bi bi-plus-circle-fill"></i>Add Admin</a>--%>
+                <%--                </li>--%>
                 <li> <a href="Maintainance.jsp"><i class="bi bi-eye-fill"></i>View Biller</a>
                 </li>
               </ul>
             </li>
+
+            <li>
+              <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bi bi-person-check"></i>
+                </div>
+                <div class="menu-title">Admin</div>
+              </a>
+              <ul>
+                <li> <a href="Addadmin.jsp"><i class="bi bi-plus-circle-fill"></i>Add Admin</a>
+                </li>
+                <li> <a href="Viewadmin.jsp"><i class="bi bi-eye-fill"></i>View Admin</a>
+                </li>
+              </ul>
+            </li>
+
+
+
+
 
 
 
@@ -161,8 +168,7 @@
               <ul>
                 <li> <a href="map-google-maps.html"><i class="bi bi-plus-circle-fill"></i>Google Maps</a>
                 </li>
-                <li> <a href="map-vector-maps.html"><i class="bi bi-plus-circle-fill"></i>Vector Maps</a>
-                </li>
+
               </ul>
             </li>
            

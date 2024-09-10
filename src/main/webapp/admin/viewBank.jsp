@@ -278,22 +278,23 @@
 						method:'POST',
 						// dataType:'JSON',
                     success:function(data,textStatus,jqXHR){
-                      if(data.trim() ==='done'){
+                      if(data.trim() ==='done') {
                         $.toast({
-	  		  					    text: "Successfully Deleted!",
-	  		  					    heading: 'Success...',
-	  		  					    icon: 'success',
-	  		  					    showHideTransition: 'slide',
-	  		  					    allowToastClose: true,
-	  		  					    hideAfter: 3000,
-	  		  					    stack: 10,
-	  		  					    position: 'top-center',
-	  		  					    textAlign: 'left',
-	  		  					    loader: true,
-	  		  					    loaderBg: '#24ffb6',
-	  		  					});
-		  		  				getData();
-	  		  				}else{
+                          text: "Successfully Deleted!",
+                          heading: 'Success...',
+                          icon: 'success',
+                          showHideTransition: 'slide',
+                          allowToastClose: true,
+                          hideAfter: 3000,
+                          stack: 10,
+                          position: 'top-center',
+                          textAlign: 'left',
+                          loader: true,
+                          loaderBg: '#24ffb6',
+                        });
+                        getData();
+
+                      }else{
 	  		  				$.toast({
 				  		  	    text: "Something went wrong on code!",
 				  		  	    heading: 'Failed...', 

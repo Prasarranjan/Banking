@@ -53,7 +53,7 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Branch Details</h4>
+            <h4 class="card-title">Branch Details Card</h4>
         </div>
         <div class="card-body">
             <div class="row">
@@ -78,14 +78,12 @@
 
             </div>
         </div>
-        <div class="card-footer text-center">
-            <a href="ViewBranch.jsp" class="btn btn-secondary">Back to List</a>
-        </div>
 
-    </div>
-    <div class="note">
-        Note: If the bank is deactivated, you can go to edit and click on "Active" with the date. Ignore if active.
-    </div>
+<%--    </div>--%>
+<%--    <div class="note">--%>
+<%--        Note: If the bank is deactivated, you can go to edit and click on "Active" with the date. Ignore if active.--%>
+<%--    </div>--%>
+
 </div>
 
 <!-- Bootstrap JS and dependencies -->
