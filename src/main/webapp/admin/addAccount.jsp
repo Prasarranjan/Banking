@@ -156,8 +156,24 @@
                                 <label for="accountType" class="form-label">Account Type</label>
                                 <select id="accountType" name="accountType" class="form-select form-control-lg" required>
                                     <option value="">Select Account Type</option>
-                                    <option value="Savings">Savings</option>
-                                    <option value="Current">Current</option>
+                                    <%
+                                        try {
+                                            Connection con = DbConnection.getConnection();
+                                            String sql1 = "SELECT accTypeId, accTypeName FROM accounttype";
+                                            PreparedStatement ps = con.prepareStatement(sql1);
+                                            ResultSet rs = ps.executeQuery();
+                                            while (rs.next()) {
+                                                int accTypeId = rs.getInt("accTypeId");
+                                                String accTypeName = rs.getString("accTypeName");
+                                    %>
+                                    <option value="<%= accTypeId %>"><%= accTypeName %></option>
+                                    <%
+                                            }
+                                        } catch (Exception e) {
+
+                                            e.printStackTrace();
+                                        }
+                                    %>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -376,6 +392,75 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function(){
+        console.log("page is ready .....")
+        $("#myform").on('submit',function(event){
+            event.preventDefault();
+            var f=new FormData($(this)[0]);
+            $.ajax({
+                url:"../AccountServlet",
+                data:f,
+                type:'POST',
+                async: false,
+                success:function(data,textStatus,jqXHR){
+                    if(data.trim() ==='done'){
+                        $.toast({
+                            text: "Successfully insert!",
+                            heading: 'Success...',
+                            icon: 'success',
+                            showHideTransition: 'slide',
+                            allowToastClose: true,
+                            hideAfter: 3000,
+                            stack: 10,
+                            position: 'top-center',
+                            textAlign: 'left',
+                            loader: true,
+                            loaderBg: '#24ffb6',
+                        });
+                        $('#myform')[0].reset();
+                    }else{
+                        $.toast({
+                            text: "Something went wrong on server!",
+                            heading: 'Failed...',
+                            icon: 'error',
+                            showHideTransition: 'slide',
+                            allowToastClose: true,
+                            hideAfter: 3000,
+                            stack: 10,
+                            position: 'top-center',
+                            textAlign: 'left',
+                            loader: true,
+                            loaderBg: '#9EC600',
+                        });
+                    }
+                },
+                cache: false,
+                contentType: false,
+                processData: false,
+
+                error:function(jqXHR,textStatus,errorThrown){
+                    console.log("error...")
+                    $.toast({
+                        text: "Something went wrong on server!",
+                        heading: 'Failed...',
+                        icon: 'error',
+                        showHideTransition: 'slide',
+                        allowToastClose: true,
+                        hideAfter: 3000,
+                        stack: 10,
+                        position: 'top-center',
+                        textAlign: 'left',
+                        loader: true,
+                        loaderBg: '#9EC600',
+                    });
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
 </body>
 
 </html>
