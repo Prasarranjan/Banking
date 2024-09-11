@@ -81,111 +81,139 @@
                 <hr/>
                 <div class="card">
                     <div class="card-body">
-                        <form id="myform">
-                            <!-- Section 1: Applicant Information -->
-                            <h5 class="form-label">Applicant Information</h5>
-                            <div class="mb-3">
-                                <label for="firstName" class="form-label">First Name</label>
-                                <input id="firstName" class="form-control form-control-lg" type="text" name="firstName" placeholder="Enter First Name" required>
-                                <input type="hidden" name="event" value="addaccount">
-                            </div>
-                            <div class="mb-3">
-                                <label for="middleName" class="form-label">Middle Name</label>
-                                <input id="middleName" class="form-control form-control-lg" type="text" name="middleName" placeholder="Enter Middle Name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="lastName" class="form-label">Last Name</label>
-                                <input id="lastName" class="form-control form-control-lg" type="text" name="lastName" placeholder="Enter Last Name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input id="email" class="form-control form-control-lg" type="email" name="email" placeholder="Enter Email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Phone Number</label>
-                                <input id="phone" class="form-control form-control-lg" type="tel" name="phone" placeholder="Enter Phone Number" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Address</label>
-                                <input id="address" class="form-control form-control-lg" type="text" name="address" placeholder="Enter Address" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="aadhaar" class="form-label">Aadhaar Number</label>
-                                <input id="aadhaar" class="form-control form-control-lg" type="text" name="aadhaar" placeholder="Enter Aadhaar Number" required>
-                            </div>
-                            <!-- New Image Upload Field -->
-                            <div class="mb-3">
-                                <label for="image" class="form-label">Upload Image</label>
-                                <input id="image" class="form-control form-control-lg" type="file" name="image" accept="image/*" required>
+                        <form id="customerForm"  enctype="multipart/form-data">
+                            <!-- Section: Customer Details -->
+                            <h5 class="form-label">CUSTOMER DETAILS</h5>
+
+                            <!-- First Row: First Name, Middle Name, Last Name -->
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="firstName" class="form-label">Customer First Name</label>
+                                    <input id="firstName" class="form-control form-control-lg" type="text" name="firstName" placeholder="Enter First Name" required>
+                                    <input type="hidden" name="event" value="addaccount">
+                                    <input type="hidden" name="latitude" id="latitude" value="">
+                                    <input type="hidden" name="longitude" id="longitude" value="">
+                                    <input type="hidden" name="branchid" id="branchid" value="10">
+                                    <input type="hidden" name="typeId" id="typeId" value="11">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="lastName" class="form-label">Customer Last Name</label>
+                                    <input id="lastName" class="form-control form-control-lg" type="text" name="lastName" placeholder="Enter Last Name" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="email" class="form-label">Customer Email</label>
+                                    <input id="email" class="form-control form-control-lg" type="email" name="email" placeholder="Enter Customer Email" required>
+                                </div>
                             </div>
 
-                            <!-- Section 2: Bank Details -->
-                            <h5 class="form-label">Bank Details</h5>
+                            <!-- Second Row: Email, Password, Date of Birth -->
+                            <div class="row mb-3">
+
+                                <div class="col-md-4">
+                                    <label for="password" class="form-label">Customer Password</label>
+                                    <input id="password" class="form-control form-control-lg" type="password" name="password" placeholder="Enter Customer Password" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="dob" class="form-label">Customer Dob</label>
+                                    <input id="dob" class="form-control form-control-lg" type="date" name="dob" placeholder="dd/mm/yyyy" required>
+                                </div>
+                            </div>
+
+                            <!-- Third Row: Customer Phone, Address -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Customer Phone</label>
+                                    <input id="phone" class="form-control form-control-lg" type="tel" name="phone" placeholder="Enter Customer Phone" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="address" class="form-label">Customer Address</label>
+                                    <input id="address" class="form-control form-control-lg" type="text" name="address" placeholder="Enter Address" required>
+                                </div>
+                            </div>
+
+                            <!-- Fourth Row: Photo -->
                             <div class="mb-3">
-                                <label for="bankSelect" class="form-label">Select Bank</label>
-                                <select id="bankSelect" name="bankId" class="form-select form-control-lg" required>
-                                    <option value="">Select Bank</option>
-                                    <%
-                                        try {
-                                            Connection con = DbConnection.getConnection();
-                                            String sql1 = "SELECT bankId, bankName FROM Bank";
-                                            PreparedStatement ps = con.prepareStatement(sql1);
-                                            ResultSet rs = ps.executeQuery();
-                                            while (rs.next()) {
-                                                int bankId = rs.getInt("bankId");
-                                                String bankName = rs.getString("bankName");
-                                    %>
-                                    <option value="<%= bankId %>"><%= bankName %></option>
-                                    <%
+                                <label for="photo" class="form-label">Photo</label>
+                                <input id="photo" class="form-control form-control-lg" type="file" name="photo" accept="image/*" required>
+                            </div>
+
+                            <!-- Section: Bank & Branch Details -->
+                            <h5 class="form-label">BANK & BRANCH DETAILS</h5>
+
+                            <!-- Fifth Row: Bank and Branch Dropdowns -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="bankSelect" class="form-label">Select Bank</label>
+                                    <select id="bankSelect" name="bankId" class="form-select form-control-lg" required>
+                                        <option value="">-Select Bank-</option>
+                                        <!-- Bank options dynamically generated from database -->
+                                        <%
+                                            try {
+                                                Connection con = DbConnection.getConnection();
+                                                String sql1 = "SELECT bankId, bankName FROM Bank";
+                                                PreparedStatement ps = con.prepareStatement(sql1);
+                                                ResultSet rs = ps.executeQuery();
+                                                while (rs.next()) {
+                                                    int bankId = rs.getInt("bankId");
+                                                    String bankName = rs.getString("bankName");
+                                        %>
+                                        <option value="<%= bankId %>"><%= bankName %></option>
+                                        <%
+                                                }
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
                                             }
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
-                                    %>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="branchSelect" class="form-label">Select Branch</label>
-                                <select id="branchSelect" name="branchId" class="form-select form-control-lg" >
-                                    <!-- Branch options will be dynamically populated -->
-                                </select>
+                                        %>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="branchSelect" class="form-label">Select Branch</label>
+                                    <select id="branchSelect" name="branchId" class="form-select form-control-lg" required>
+                                        <!-- Branch options will be dynamically populated based on bank selection -->
+                                    </select>
+                                </div>
                             </div>
 
-                            <!-- Section 3: Account Details -->
-                            <h5 class="form-label">Account Details</h5>
-                            <div class="mb-3">
-                                <label for="accountType" class="form-label">Account Type</label>
-                                <select id="accountType" name="accountType" class="form-select form-control-lg" required>
-                                    <option value="">Select Account Type</option>
-                                    <%
-                                        try {
-                                            Connection con = DbConnection.getConnection();
-                                            String sql1 = "SELECT accTypeId, accTypeName FROM accounttype";
-                                            PreparedStatement ps = con.prepareStatement(sql1);
-                                            ResultSet rs = ps.executeQuery();
-                                            while (rs.next()) {
-                                                int accTypeId = rs.getInt("accTypeId");
-                                                String accTypeName = rs.getString("accTypeName");
-                                    %>
-                                    <option value="<%= accTypeId %>"><%= accTypeName %></option>
-                                    <%
+                            <!-- Section: Account Details -->
+                            <h5 class="form-label">ACCOUNT DETAILS</h5>
+
+                            <!-- Sixth Row: Account Type, Minimum Balance -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="accountType" class="form-label">Account Type</label>
+                                    <select id="accountType" name="accountTypeId" class="form-select form-control-lg" required>
+                                        <option value="">-Choose Account Type-</option>
+                                        <!-- Account types dynamically generated from database -->
+                                        <%
+                                            try {
+                                                Connection con = DbConnection.getConnection();
+                                                String sql1 = "SELECT accTypeId, accTypeName FROM accounttype";
+                                                PreparedStatement ps = con.prepareStatement(sql1);
+                                                ResultSet rs = ps.executeQuery();
+                                                while (rs.next()) {
+                                                    int accTypeId = rs.getInt("accTypeId");
+                                                    String accTypeName = rs.getString("accTypeName");
+                                        %>
+                                        <option value="<%= accTypeId %>"><%= accTypeName %></option>
+                                        <%
+                                                }
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
                                             }
-                                        } catch (Exception e) {
-
-                                            e.printStackTrace();
-                                        }
-                                    %>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="balance" class="form-label">Balance</label>
-                                <input id="balance" class="form-control form-control-lg" type="number" name="balance" required>
-                                <span class="text-muted">Minimum balance is 500</span>
+                                        %>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="balance" class="form-label">Minimum Balance</label>
+                                    <input id="balance" class="form-control form-control-lg" type="number" name="balance" value="500.00" readonly>
+                                </div>
                             </div>
 
                             <!-- Submit Button -->
-                            <input class="form-control btn btn-info" type="submit" value="Submit">
+                            <input class="form-control btn btn-info" type="submit" value="Create New Account">
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -308,10 +336,10 @@
                     for (var key in response) {
                         if (response.hasOwnProperty(key)) {
                             s += '<option value="' + response[key].branchId + '">' + response[key].branchName + '</option>';
-                            s+= ' <input type="hidden" id="branchId" name="branchId" value="">'
+                            s+= ' <input type="hidden" id="branchId" name="branchId" value="10">'
                         }
                     }
-
+                    $('#branchid').append(response[key].branchId)
                     $('#branchSelect').html(s);
                 },
                 error: function () {
@@ -324,13 +352,19 @@
 </script>
 <script>
     $(document).ready(function(){
+
         console.log("page is ready .....")
-        $("#myform").on('submit',function(event){
+        $("#customerForm").on('submit',function(event){
             event.preventDefault();
-            var f=new FormData($(this)[0]);
+            var selectedBranchId = $('#branchSelect').val();
+            var selectedTypeId = $('#accountType').val();
+
+            var formData = new FormData($(this)[0]);
+            formData.append('branchId', selectedBranchId);
+            formData.append('typeId', selectedTypeId);
             $.ajax({
                 url:"../AccountServlet",
-                data:f,
+                data:formData,
                 type:'POST',
                 async: false,
                 success:function(data,textStatus,jqXHR){
@@ -390,7 +424,87 @@
         });
     });
 </script>
+<script>
+    function getLocationAndSubmitForm(event) {
+        // Prevent the default form submission
+        event.preventDefault();
 
+        // Get the current location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                console.log(latitude)
+                console.log(longitude)
+                var formData = new FormData(document.getElementById('customerForm'));
+
+                // Append latitude and longitude to FormData object
+                formData.append('latitude', latitude);
+                formData.append('longitude', longitude);
+                // Send location and form data to Servlet using AJAX
+                $.ajax({
+                    url: '../AccountServlet',
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    success: function(data,textStatus,jqXHR){
+                        if(data.trim() ==='done'){
+                            $.toast({
+                                text: "Account Create Successfully !",
+                                heading: 'Success...',
+                                icon: 'success',
+                                showHideTransition: 'slide',
+                                allowToastClose: true,
+                                hideAfter: 3000,
+                                stack: 10,
+                                position: 'top-center',
+                                textAlign: 'left',
+                                loader: true,
+                                loaderBg: '#24ffb6',
+                            });
+                            $('#customerForm')[0].reset();
+                        }else{
+                            $.toast({
+                                text: "Something went wrong on server!",
+                                heading: 'Failed...',
+                                icon: 'error',
+                                showHideTransition: 'slide',
+                                allowToastClose: true,
+                                hideAfter: 3000,
+                                stack: 10,
+                                position: 'top-center',
+                                textAlign: 'left',
+                                loader: true,
+                                loaderBg: '#9EC600',
+                            });
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    error: function(jqXHR,textStatus,errorThrown){
+                        $.toast({
+                            text: "Something went wrong on server!",
+                            heading: 'Failed...',
+                            icon: 'error',
+                            showHideTransition: 'slide',
+                            allowToastClose: true,
+                            hideAfter: 3000,
+                            stack: 10,
+                            position: 'top-center',
+                            textAlign: 'left',
+                            loader: true,
+                            loaderBg: '#9EC600',
+                        });
+                    }
+                });
+                return false;
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+</script>
 </body>
 
 </html>

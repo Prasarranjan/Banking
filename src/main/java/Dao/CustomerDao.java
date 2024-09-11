@@ -14,6 +14,7 @@ public class CustomerDao {
 
 
 
+
     public int saveCustomer(customer cs) {
         int status = 0;
         try {
@@ -161,6 +162,34 @@ public class CustomerDao {
             f.printStackTrace();
         }
         return result;
+    }
+    public int getCoustid(customer c) {
+       int status=0;
+        try {
+            Connection con = DbConnection.getConnection();
+            String query = "INSERT INTO customer (custFrame, custLname, custEmail, custPhone, custRedgDate, custDOB, custAddress, custuserId, custPass, deviceld, custImg) values(?,?,?,?,now(),?,?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(query , Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1,c.getCustFname());
+            ps.setString(2,c.getCustLname());
+            ps.setString(3,c.getCustEmail());
+            ps.setString(4,c.getCustPhone());
+            ps.setString(5,c.getCustDOB());
+            ps.setString(6,c.getCustAddress());
+            ps.setInt(7, c.getCustId());
+            ps.setString(8,c.getCustPass());
+            ps.setInt(9,c.getDeviceId());
+            ps.setString(10,c.getCustImg());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                status = rs.getInt(1);
+            }
+            con.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return status;
     }
     }
 

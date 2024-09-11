@@ -8,21 +8,18 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class AccountDao {
-    public int createAccount(Account ac) {
+    public static int createNewAccount( Long accNumber,int custId,int accTypeId,double balance ,int branchId) {
         int status=0;
         try {
             Connection con= DbConnection.getConnection();
-            String query="INSERT INTO Account( openingDate, balance, firstName, middleName, lastName, email, phoneNo, address,aadharNo,  acImg)VALUES(now(),?,?,?,?,?,?,?,?,?)";
+            String query="INSERT INTO account(accNumber,custId,accTypeId ,balance,branchId,openingDate )VALUES(?,?,?,?,?,now())";
             PreparedStatement ps=con.prepareStatement(query);
-            ps.setString(1,ac.getBalance());
-            ps.setString(2,ac.getFirstName());
-            ps.setString(3,ac.getMiddleName());
-            ps.setString(4,ac.getLastName());
-            ps.setString(5,ac.getEmail());
-            ps.setString(6,ac.getPhoneNo());
-            ps.setString(7,ac.getAddress());
-            ps.setString(8, ac.getAadharNo());
-            ps.setString(9,ac.getAcImg());
+            //accNumber,custId,accTypeId,balance,branchId
+            ps.setLong(1,accNumber);
+            ps.setInt(2,custId);
+            ps.setInt(3,accTypeId);
+            ps.setDouble(4,balance);
+            ps.setInt(5,branchId);
             status=ps.executeUpdate();
             con.close();
         }  catch (SQLException e) {e.printStackTrace();}
