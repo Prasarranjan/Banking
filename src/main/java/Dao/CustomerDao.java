@@ -167,7 +167,7 @@ public class CustomerDao {
        int status=0;
         try {
             Connection con = DbConnection.getConnection();
-            String query = "INSERT INTO customer (custFrame, custLname, custEmail, custPhone, custRedgDate, custDOB, custAddress, custuserId, custPass, deviceld, custImg) values(?,?,?,?,now(),?,?,?,?,?,?)";
+            String query = "INSERT INTO customer(custFname, custLname, custEmail, custPhone, custRedg, custDOB, custAddress, custuserId, custPass, deviceId, custImg) values(?,?,?,?,now(),?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(query , Statement.RETURN_GENERATED_KEYS);
             ps.setString(1,c.getCustFname());
             ps.setString(2,c.getCustLname());

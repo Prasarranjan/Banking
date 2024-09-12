@@ -91,8 +91,8 @@
                                     <label for="firstName" class="form-label">Customer First Name</label>
                                     <input id="firstName" class="form-control form-control-lg" type="text" name="firstName" placeholder="Enter First Name" required>
                                     <input type="hidden" name="event" value="addaccount">
-                                    <input type="hidden" name="latitude" id="latitude" value="">
-                                    <input type="hidden" name="longitude" id="longitude" value="">
+                                    <input type="hidden" name="latitude" id="latitude1" value="">
+                                    <input type="hidden" name="longitude" id="longitude1" value="">
                                     <input type="hidden" name="branchid" id="branchid" value="10">
                                     <input type="hidden" name="typeId" id="typeId" value="11">
                                 </div>
@@ -351,119 +351,78 @@
 
 </script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
+        console.log("page is ready .....");
 
-        console.log("page is ready .....")
-        $("#customerForm").on('submit',function(event){
+        $("#customerForm").on('submit', function(event) {
             event.preventDefault();
-            var selectedBranchId = $('#branchSelect').val();
-            var selectedTypeId = $('#accountType').val();
-
-            var formData = new FormData($(this)[0]);
-            formData.append('branchId', selectedBranchId);
-            formData.append('typeId', selectedTypeId);
-            $.ajax({
-                url:"../AccountServlet",
-                data:formData,
-                type:'POST',
-                async: false,
-                success:function(data,textStatus,jqXHR){
-                    if(data.trim() ==='done'){
-                        $.toast({
-                            text: "Successfully insert!",
-                            heading: 'Success...',
-                            icon: 'success',
-                            showHideTransition: 'slide',
-                            allowToastClose: true,
-                            hideAfter: 3000,
-                            stack: 10,
-                            position: 'top-center',
-                            textAlign: 'left',
-                            loader: true,
-                            loaderBg: '#24ffb6',
-                        });
-                        $('#myform')[0].reset();
-                    }else{
-                        $.toast({
-                            text: "Something went wrong on server!",
-                            heading: 'Failed...',
-                            icon: 'error',
-                            showHideTransition: 'slide',
-                            allowToastClose: true,
-                            hideAfter: 3000,
-                            stack: 10,
-                            position: 'top-center',
-                            textAlign: 'left',
-                            loader: true,
-                            loaderBg: '#9EC600',
-                        });
-                    }
-                },
-                cache: false,
-                contentType: false,
-                processData: false,
-
-                error:function(jqXHR,textStatus,errorThrown){
-                    console.log("error...")
-                    $.toast({
-                        text: "Something went wrong on server!",
-                        heading: 'Failed...',
-                        icon: 'error',
-                        showHideTransition: 'slide',
-                        allowToastClose: true,
-                        hideAfter: 3000,
-                        stack: 10,
-                        position: 'top-center',
-                        textAlign: 'left',
-                        loader: true,
-                        loaderBg: '#9EC600',
-                    });
-                }
-            });
-            return false;
+            getLocationAndSubmitForm(event);  // Call the function to handle form submission with geolocation data
         });
-    });
-</script>
-<script>
-    function getLocationAndSubmitForm(event) {
-        // Prevent the default form submission
-        event.preventDefault();
 
-        // Get the current location
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-                console.log(latitude)
-                console.log(longitude)
-                var formData = new FormData(document.getElementById('customerForm'));
+        function getLocationAndSubmitForm(event) {
+            // Prevent the default form submission
+            event.preventDefault();
 
-                // Append latitude and longitude to FormData object
-                formData.append('latitude', latitude);
-                formData.append('longitude', longitude);
-                // Send location and form data to Servlet using AJAX
-                $.ajax({
-                    url: '../AccountServlet',
-                    type: 'POST',
-                    data: formData,
-                    async: false,
-                    success: function(data,textStatus,jqXHR){
-                        if(data.trim() ==='done'){
-                            $.toast({
-                                text: "Account Create Successfully !",
-                                heading: 'Success...',
-                                icon: 'success',
-                                showHideTransition: 'slide',
-                                allowToastClose: true,
-                                hideAfter: 3000,
-                                stack: 10,
-                                position: 'top-center',
-                                textAlign: 'left',
-                                loader: true,
-                                loaderBg: '#24ffb6',
-                            });
-                            $('#customerForm')[0].reset();
-                        }else{
+            // Get the current location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    var formData = new FormData($('#customerForm')[0]);
+
+                    // Append latitude and longitude to FormData object
+                    $('#latitude1').val(latitude);
+                    $('#longitude1').val(longitude);
+
+                    console.log(longitude + latitude)
+                    // Append additional form fields
+                    var selectedBranchId = $('#branchSelect').val();
+                    var selectedTypeId = $('#accountType').val();
+                    formData.append('branchId', selectedBranchId);
+                    formData.append('typeId', selectedTypeId);
+
+                    // Send location and form data to Servlet using AJAX
+                    $.ajax({
+                        url: "../AccountServlet",
+                        type: 'POST',
+                        data: formData,
+                        async: false,
+                        success: function(data, textStatus, jqXHR) {
+                            if (data.trim() === 'done') {
+                                $.toast({
+                                    text: "Successfully inserted!",
+                                    heading: 'Success...',
+                                    icon: 'success',
+                                    showHideTransition: 'slide',
+                                    allowToastClose: true,
+                                    hideAfter: 3000,
+                                    stack: 10,
+                                    position: 'top-center',
+                                    textAlign: 'left',
+                                    loader: true,
+                                    loaderBg: '#24ffb6',
+                                });
+                                $('#customerForm')[0].reset();
+                            } else {
+                                $.toast({
+                                    text: "Something went wrong on server!",
+                                    heading: 'Failed...',
+                                    icon: 'error',
+                                    showHideTransition: 'slide',
+                                    allowToastClose: true,
+                                    hideAfter: 3000,
+                                    stack: 10,
+                                    position: 'top-center',
+                                    textAlign: 'left',
+                                    loader: true,
+                                    loaderBg: '#9EC600',
+                                });
+                            }
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        error: function(jqXHR, textStatus, errorThrown) {
                             $.toast({
                                 text: "Something went wrong on server!",
                                 heading: 'Failed...',
@@ -478,32 +437,29 @@
                                 loaderBg: '#9EC600',
                             });
                         }
-                    },
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    error: function(jqXHR,textStatus,errorThrown){
-                        $.toast({
-                            text: "Something went wrong on server!",
-                            heading: 'Failed...',
-                            icon: 'error',
-                            showHideTransition: 'slide',
-                            allowToastClose: true,
-                            hideAfter: 3000,
-                            stack: 10,
-                            position: 'top-center',
-                            textAlign: 'left',
-                            loader: true,
-                            loaderBg: '#9EC600',
-                        });
-                    }
+                    });
+                }, function(error) {
+                    console.error('Geolocation error:', error);
+                    $.toast({
+                        text: "Could not retrieve geolocation!",
+                        heading: 'Error...',
+                        icon: 'error',
+                        showHideTransition: 'slide',
+                        allowToastClose: true,
+                        hideAfter: 3000,
+                        stack: 10,
+                        position: 'top-center',
+                        textAlign: 'left',
+                        loader: true,
+                        loaderBg: '#9EC600',
+                    });
                 });
-                return false;
-            });
-        } else {
-            alert("Geolocation is not supported by this browser.");
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
         }
-    }
+    });
+
 </script>
 </body>
 

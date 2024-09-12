@@ -12,7 +12,7 @@ public class DeviceDao {
             String query="INSERT INTO mobiledevice (latitude, longitude, loginDate) VALUES (?,?, now())";
             PreparedStatement ps=con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, latitude);
-            ps.setString(2,longitude);
+            ps.setString(2, longitude);
             ps.executeUpdate();
 // get the auto-generated keys
             ResultSet rs = ps.getGeneratedKeys();

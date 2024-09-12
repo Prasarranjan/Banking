@@ -77,6 +77,8 @@ public class AccountServlet extends HttpServlet {
             String address = request.getParameter("address");
             String latitude = request.getParameter("latitude");
             String longitude = request.getParameter("longitude");
+            System.out.println("lat" + latitude);
+            System.out.println("long" + longitude);
             int userId = userId();
             int branchId = Integer.parseInt(request.getParameter("branchid"));
             int accTypeId = Integer.parseInt(request.getParameter("typeId"));
@@ -85,7 +87,7 @@ public class AccountServlet extends HttpServlet {
             //image start
             Part p1 = request.getPart("photo");
             String Path = DbConnection.Path();
-            String appPath = Path + "/AcImg";
+            String appPath = Path + "/costumerImage";
             String imagePath = appPath + "";
             File fileDir = new File(imagePath);
             if (!fileDir.exists())
@@ -118,7 +120,7 @@ public class AccountServlet extends HttpServlet {
                 cust.setCustLname(lastName);
                 cust.setCustPass(password);
                 cust.setCustPhone(phone);
-                cust.setCustUserId(String.valueOf(userId));
+                cust.setCustId(userId);
                 cust.setCustImg(imgname1);
                 cust.setDeviceId(deviceId);
                 CustomerDao cd = new CustomerDao();
@@ -129,41 +131,52 @@ public class AccountServlet extends HttpServlet {
                     AccountDao ad=new AccountDao();
                     int status=ad.createNewAccount(accNumber,custId,accTypeId,balance,branchId);
                     if(status>0) {
-                        if(email!=null || !email.equals("")) {
-                            String to = email;// change accordingly
-                            // Get the session object
-                            Properties props = new Properties();
-                            props.put("mail.smtp.host", "smtp.gmail.com");
-                            props.put("mail.smtp.socketFactory.port", "465");
-                            props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-                            props.put("mail.smtp.auth", "true");
-                            props.put("mail.smtp.port", "465");
-                            Session session = Session.getDefaultInstance(props, new jakarta.mail.Authenticator() {
-                                protected jakarta.mail.PasswordAuthentication getPasswordAuthentication() {
-                                    return new PasswordAuthentication("therealprasar@gmail.com", "mailprasar@1234");
-                                    // id and
-                                    // password here
-                                }
-                            });
-                            // compose message
+                        if (email != null && !email.equals("")) {
                             try {
-                                MimeMessage message = new MimeMessage(session);
-                                message.setFrom(new InternetAddress(email));// change accordingly
-                                message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-                                message.setSubject("Congratulation ");
-                                message.setText("your account is created successfully ,your User Id is: " + userId+"  & your Password is: " + password +"  It may take 1 hour to activated your account ,Once ADMIN approved your request ,you will be allowed to login . THANK YOU! ");
+                                String to = email; // recipient email
 
-                                // send message
-                                Transport.send(message);
-                                out.print("done");
-                            }
+                                // Set properties for the mail session
+                                Properties props = new Properties();
+                                props.put("mail.smtp.host", "smtp.gmail.com");
+                                props.put("mail.smtp.port", "587"); // Using TLS
+                                props.put("mail.smtp.auth", "true");
+                                props.put("mail.smtp.starttls.enable", "true"); // Enable TLS
 
-                            catch (MessagingException e) {
-                                throw new RuntimeException(e);
+                                // Get the session object with authentication
+                                Session session = Session.getInstance(props, new jakarta.mail.Authenticator() {
+                                    protected jakarta.mail.PasswordAuthentication getPasswordAuthentication() {
+                                        return new jakarta.mail.PasswordAuthentication("infoebank17@gmail.com", "zaphlaphqpsoemth"); // sender's email and app password
+                                    }
+                                });
+
+                                // Compose the message
+                                try {
+                                    MimeMessage message = new MimeMessage(session);
+                                    message.setFrom(new InternetAddress("infoebank17@gmail.com")); // sender email
+                                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(to)); // recipient email
+                                    message.setSubject("Congratulations dear  "+ firstName);
+                                    message.setText("Your account in eBank is  created successfully! Your User ID is: " + userId +
+                                            " and your Password is: " + password                      +
+                                            ". It may take up to 1 hour for your account to be activated. Once the ADMIN approves your request, you will be able to log in. THANK YOU!");
+
+                                    System.out.println("Prepared Message: " + message);
+
+                                    // Send message
+                                    Transport.send(message);
+                                    System.out.println("heigala");
+                                    out.print("done");
+                                } catch (MessagingException e) {
+                                    System.out.println("Messaging Exception occurred.");
+                                    e.printStackTrace();
+                                    throw new RuntimeException(e);
+                                }
+                            } catch (Exception e) {
+                                System.out.println("General Exception occurred.");
+                                e.printStackTrace();
                             }
-                        }else {
-                            out.print("failed");
                         }
+
+
                     }else {
                         out.print("failed");
                     }
