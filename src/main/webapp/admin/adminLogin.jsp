@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eBank - Admin Login</title>
+    <link href="assets/jquery-toast/src/jquery.toast.css" rel="stylesheet" />
+    <link href="assets/jquery-toast/dist/jquery.toast.min.css" rel="stylesheet" />
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -141,9 +143,10 @@
         </div>
 
         <p>Bas your growth and get consulting support!</p>
-        <form action="loginServlet" method="post">
+        <form  id="myfrom">
             <label for="email">Email Address</label>
             <input type="text" id="email" name="email" placeholder="Enter Email">
+            <input type="hidden" name="event" value="login">
 
             <label for="password">Enter Password</label>
             <input type="password" id="password" name="password" placeholder="Enter Password">
@@ -170,5 +173,78 @@
         </div>
     </div>
 </div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/jquery-toast/src/jquery.toast.js"></script>
+<script src="assets/jquery-toast/dist/jquery.toast.min.js"></script>
+<script>
+    $(document).ready(function(){
+        console.log("page is ready .....")
+        $("#myfrom").on('submit',function(event){
+            event.preventDefault();
+            var f=new FormData($(this)[0]);
+            $.ajax({
+                url:"../AdminLoginServlet",
+                data:f,
+                type:'POST',
+                async: false,
+                success:function(data,textStatus,jqXHR){
+                    if(data.trim() ==='done'){
+                        $.toast({
+                            text: "LogIn Successful!",
+                            heading: 'Success...',
+                            icon: 'success',
+                            showHideTransition: 'slide',
+                            allowToastClose: true,
+                            hideAfter: 3000,
+                            stack: 10,
+                            position: 'top-center',
+                            textAlign: 'left',
+                            loader: true,
+                            loaderBg: '#24ffb6',
+                        });
+                        window.location.href="addBank.jsp";
+                    }else{
+                        $.toast({
+                            text: "Something went wrong on admin!",
+                            heading: 'Failed...',
+                            icon: 'error',
+                            showHideTransition: 'slide',
+                            allowToastClose: true,
+                            hideAfter: 3000,
+                            stack: 10,
+                            position: 'top-center',
+                            textAlign: 'left',
+                            loader: true,
+                            loaderBg: '#9EC600',
+                        });
+                    }
+                },
+                cache: false,
+                contentType: false,
+                processData: false,
+
+                error:function(jqXHR,textStatus,errorThrown){
+                    console.log("error...")
+                    $.toast({
+                        text: "Something went wrong on server!",
+                        heading: 'Failed...',
+                        icon: 'error',
+                        showHideTransition: 'slide',
+                        allowToastClose: true,
+                        hideAfter: 3000,
+                        stack: 10,
+                        position: 'top-center',
+                        textAlign: 'left',
+                        loader: true,
+                        loaderBg: '#9EC600',
+                    });
+                }
+            });
+            return false;
+        });
+    });
+</script>
 </body>
 </html>
+
