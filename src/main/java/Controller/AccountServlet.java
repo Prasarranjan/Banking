@@ -80,8 +80,8 @@ public class AccountServlet extends HttpServlet {
             System.out.println("lat" + latitude);
             System.out.println("long" + longitude);
             int userId = userId();
-            int branchId = Integer.parseInt(request.getParameter("branchid"));
-            int accTypeId = Integer.parseInt(request.getParameter("typeId"));
+            int branchId = Integer.parseInt(request.getParameter("branchId"));
+            int accTypeId = Integer.parseInt(request.getParameter("accountTypeId"));
             double balance = Double.parseDouble(request.getParameter("balance"));
             long accNumber = accountNum();
             //image start

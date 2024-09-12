@@ -91,11 +91,11 @@
                                     <label for="firstName" class="form-label">Customer First Name</label>
                                     <input id="firstName" class="form-control form-control-lg" type="text" name="firstName" placeholder="Enter First Name" required>
                                     <input type="hidden" name="event" value="addaccount">
-                                    <input type="hidden" name="latitude" id="latitude1" value="">
-                                    <input type="hidden" name="longitude" id="longitude1" value="">
-                                    <input type="hidden" name="branchid" id="branchid" value="10">
+                                  <%--  <input type="hidden" name="latitude" id="latitude1" value="">
+                                    <input type="hidden" name="longitude" id="longitude1" value="">--%>
+                               <%--     <input type="hidden" name="branchid" id="branchid" value="10">
                                     <input type="hidden" name="typeId" id="typeId" value="11">
-                                </div>
+                               --%> </div>
 
                                 <div class="col-md-4">
                                     <label for="lastName" class="form-label">Customer Last Name</label>
@@ -371,18 +371,10 @@
                     var formData = new FormData($('#customerForm')[0]);
 
                     // Append latitude and longitude to FormData object
-                    $('#latitude1').val(latitude);
-                    $('#longitude1').val(longitude);
+                    formData.append('latitude',latitude);
+                    formData.append('longitude',longitude);
 
-                    console.log(longitude + latitude)
-                    // Append additional form fields
-                    var selectedBranchId = $('#branchSelect').val();
-                    var selectedTypeId = $('#accountType').val();
-                    formData.append('branchId', selectedBranchId);
-                    formData.append('typeId', selectedTypeId);
-
-                    // Send location and form data to Servlet using AJAX
-                    $.ajax({
+                  $.ajax({
                         url: "../AccountServlet",
                         type: 'POST',
                         data: formData,
