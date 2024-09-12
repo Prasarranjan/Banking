@@ -18,79 +18,81 @@
         }
         .login-container {
             display: flex;
-            width: 70%; /* 70% width of the screen */
-            height: 80vh; /* Adjust height to fit nicely */
+            width: 70%;
+            height: 80vh;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 20px; /* Rounded corners for the card */
+            border-radius: 20px;
             overflow: hidden;
         }
         .image-container {
-            width: 70%; /* Image container takes 70% of space */
-            background-image: url('assets/images/error/login-img.jpg'); /* Replace with your image URL */
+            width: 70%;
+            background-image: url('assets/images/error/login-img.jpg');
             background-size: cover;
             background-position: center;
         }
         .form-container {
-            width: 30%; /* Form container takes 30% of space */
+            width: 30%;
             padding: 50px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             background-color: white;
-            border-radius: 20px; /* Rounded corners for form container */
-        }
-        h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #007bff; /* Blue theme */
-            text-align: center; /* Center the heading */
+            border-radius: 20px;
         }
         .logo-container {
             text-align: center;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .logo-container img {
-            width: 100px; /* Adjust logo size */
+            width: 60px;
             height: auto;
+            margin-right: 10px;
+        }
+        h2 {
+            font-size: 28px;
+            color: #007bff;
+            text-align: center;
         }
         p {
             font-size: 14px;
             margin-bottom: 30px;
             color: #555;
-            text-align: center; /* Center the subtitle text */
+            text-align: center;
         }
         label {
             font-size: 14px;
-            margin-bottom: 5px;
-            color: #007bff; /* Blue theme */
+            color: #007bff;
         }
         input[type="text"], input[type="password"] {
             width: 100%;
             padding: 12px 15px;
             margin-bottom: 20px;
             border: 1px solid #007bff;
-            border-radius: 25px; /* Rounded input fields */
+            border-radius: 25px;
             outline: none;
             font-size: 16px;
             color: #333;
             transition: border-color 0.3s ease;
         }
         input[type="text"]:focus, input[type="password"]:focus {
-            border-color: #0056b3; /* Change border color on focus */
+            border-color: #0056b3;
         }
         .btn {
-            background-color: #007bff; /* Blue theme */
+            background-color: #007bff;
             color: white;
             padding: 12px;
             border: none;
-            border-radius: 25px; /* Rounded button */
+            border-radius: 25px;
             cursor: pointer;
             font-size: 16px;
             transition: background-color 0.3s ease;
             width: 100%;
         }
         .btn:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #0056b3;
         }
         .checkbox-container {
             display: flex;
@@ -104,27 +106,40 @@
             margin-top: 20px;
             font-size: 14px;
             color: #555;
-            text-align: center; /* Center the footer text */
+            text-align: center;
         }
         .footer a {
-            color: #007bff; /* Blue theme */
+            color: #007bff;
             text-decoration: none;
         }
         .footer a:hover {
             text-decoration: underline;
         }
+        .social-login {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .social-login p {
+            font-size: 16px;
+            color: #333;
+        }
+        .social-login img {
+            width: 30px;
+            height: auto;
+            margin: 0 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 <div class="login-container">
-    <div class="image-container">
-        <!-- Add your image URL in the CSS section -->
-    </div>
+    <div class="image-container"></div>
     <div class="form-container">
         <div class="logo-container">
-            <img src="assets/images/error/llooggoo.jpg" alt="eBank Logo"> <!-- Replace with your logo URL -->
+            <img src="assets/images/error/llooggoo.jpg" alt="eBank Logo">
+            <h2>eBank Admin Login</h2>
         </div>
-        <h2>eBank Admin Login</h2>
+
         <p>Bas your growth and get consulting support!</p>
         <form action="loginServlet" method="post">
             <label for="email">Email Address</label>
@@ -143,6 +158,13 @@
             <button type="submit" class="btn">Sign In</button>
         </form>
 
+        <div class="social-login">
+            <p>Login with:</p>
+            <img src="assets/images/error/google.png" alt="Google Login">
+            <img src="assets/images/error/fb.png" alt="Facebook Login">
+            <img src="assets/images/error/gmail.png" alt="Gmail Login">
+        </div>
+
         <div class="footer">
             <p>Don't have an account yet? <a href="signup.jsp">Sign up here</a></p>
         </div>
@@ -150,4 +172,3 @@
 </div>
 </body>
 </html>
-
