@@ -1,45 +1,153 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Admin Login</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBank - Admin Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            display: flex;
+            width: 70%; /* 70% width of the screen */
+            height: 80vh; /* Adjust height to fit nicely */
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 20px; /* Rounded corners for the card */
+            overflow: hidden;
+        }
+        .image-container {
+            width: 70%; /* Image container takes 70% of space */
+            background-image: url('assets/images/error/login-img.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+        }
+        .form-container {
+            width: 30%; /* Form container takes 30% of space */
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: white;
+            border-radius: 20px; /* Rounded corners for form container */
+        }
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #007bff; /* Blue theme */
+            text-align: center; /* Center the heading */
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            width: 100px; /* Adjust logo size */
+            height: auto;
+        }
+        p {
+            font-size: 14px;
+            margin-bottom: 30px;
+            color: #555;
+            text-align: center; /* Center the subtitle text */
+        }
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #007bff; /* Blue theme */
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #007bff;
+            border-radius: 25px; /* Rounded input fields */
+            outline: none;
+            font-size: 16px;
+            color: #333;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #0056b3; /* Change border color on focus */
+        }
+        .btn {
+            background-color: #007bff; /* Blue theme */
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 25px; /* Rounded button */
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        .btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .checkbox-container input {
+            margin-right: 10px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center; /* Center the footer text */
+        }
+        .footer a {
+            color: #007bff; /* Blue theme */
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <h1>Admin Login</h1>
-    <p>See your growth and get consulting support!</p>
-
-    <form action="loginServlet" method="post">
-        <div class="mb-3">
-            <label for="email" class="form-label">Email Address:</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+<div class="login-container">
+    <div class="image-container">
+        <!-- Add your image URL in the CSS section -->
+    </div>
+    <div class="form-container">
+        <div class="logo-container">
+            <img src="assets/images/error/llooggoo.jpg" alt="eBank Logo"> <!-- Replace with your logo URL -->
         </div>
+        <h2>eBank Admin Login</h2>
+        <p>Bas your growth and get consulting support!</p>
+        <form action="loginServlet" method="post">
+            <label for="email">Email Address</label>
+            <input type="text" id="email" name="email" placeholder="Enter Email">
 
-        <div class="mb-3">
-            <label for="password" class="form-label">Enter Password:</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <label for="password">Enter Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password">
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Remember Me</label>
+            </div>
+
+            <a href="#" style="font-size: 14px;">Forget Password?</a><br><br>
+
+            <button type="submit" class="btn">Sign In</button>
+        </form>
+
+        <div class="footer">
+            <p>Don't have an account yet? <a href="signup.jsp">Sign up here</a></p>
         </div>
-
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
-            <label class="form-check-label" for="rememberMe">Remember Me</label>
-        </div>
-
-        <a href="#">Forgot Password?</a>
-
-        <button type="submit" class="btn btn-primary">Sign In</button>
-
-        <div class="social-login mt-3">
-            <button type="button" class="btn btn-outline-secondary">Sign In with Google</button>
-            <button type="button" class="btn btn-outline-secondary">Sign In with Facebook</button>
-        </div>
-    </form>
-
-    <p class="mt-3">Don't have an account yet? <a href="signup.jsp">Sign up here</a></p>
+    </div>
 </div>
-
-<p class="mt-3">&copy; 2024 All rights reserved.</p>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
