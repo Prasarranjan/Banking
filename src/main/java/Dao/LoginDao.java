@@ -1,5 +1,6 @@
 package Dao;
 
+import Bean.Admin;
 import Util.DbConnection;
 
 import java.sql.Connection;
@@ -43,4 +44,29 @@ public class LoginDao {
         }
         return isValid;
     }
-}
+
+
+        public static Admin getAdminByEmailAndPassword(String email, String password) {
+            Admin admin = null;
+            try (Connection con = DbConnection.getConnection();)
+            {
+                String query = "SELECT adminId,adminName,adminPhoto from admin where adminEmail=? and adminPassword=?;";
+                PreparedStatement ps = con.prepareStatement(query);
+                ps.setString(1, email);
+                ps.setString(2, password);
+
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    admin = new Admin();
+                    admin.setAdminId(rs.getInt("adminId"));
+                    admin.setAdminName(rs.getString("adminName"));
+                    admin.setAdminPhoto(rs.getString("adminPhoto"));
+                    // Add more fields as necessary
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return admin;
+        }
+    }
+

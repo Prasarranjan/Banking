@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eBank - Admin Login</title>
-    <link href="assets/jquery-toast/src/jquery.toast.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/jquery-toast/dist/jquery.toast.min.css" rel="stylesheet" />
     <style>
         body {
@@ -39,14 +39,10 @@
             flex-direction: column;
             justify-content: center;
             background-color: white;
-            border-radius: 20px;
         }
         .logo-container {
             text-align: center;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         .logo-container img {
             width: 60px;
@@ -142,23 +138,30 @@
             <h2>eBank Admin Login</h2>
         </div>
 
-        <p>Bas your growth and get consulting support!</p>
-        <form  id="myfrom">
-            <label for="email">Email Address</label>
-            <input type="text" id="email" name="email" placeholder="Enter Email">
-            <input type="hidden" name="event" value="login">
-
-            <label for="password">Enter Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter Password">
-
-            <div class="checkbox-container">
-                <input type="checkbox" id="remember" name="remember">
-                <label for="remember">Remember Me</label>
+        <p>Boost your growth and get consulting support!</p>
+        <form id="myform">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email">
             </div>
 
-            <a href="#" style="font-size: 14px;">Forget Password?</a><br><br>
+            <div class="mb-3">
+                <label for="password" class="form-label">Enter Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+            </div>
 
-            <button type="submit" class="btn">Sign In</button>
+            <input type="hidden" name="event" value="login">
+
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                <label class="form-check-label" for="remember">Remember Me</label>
+            </div>
+
+            <div class="mb-3">
+                <a href="#" style="font-size: 14px;">Forget Password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign In</button>
         </form>
 
         <div class="social-login">
@@ -174,77 +177,62 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/jquery.min.js"></script>
-<script src="assets/jquery-toast/src/jquery.toast.js"></script>
 <script src="assets/jquery-toast/dist/jquery.toast.min.js"></script>
 <script>
-    $(document).ready(function(){
-        console.log("page is ready .....")
-        $("#myfrom").on('submit',function(event){
+    $(document).ready(function() {
+        $('#myform').on('submit', function(event) {
             event.preventDefault();
-            var f=new FormData($(this)[0]);
+
+            var formData = {
+                email: $('#email').val(),
+                password: $('#password').val(),
+                event: 'login'
+            };
+
             $.ajax({
-                url:"../AdminLoginServlet",
-                data:f,
-                type:'POST',
-                async: false,
-                success:function(data,textStatus,jqXHR){
-                    if(data.trim() ==='done'){
+                url: '../AdminLoginServlet',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    if (response === 'done') {
                         $.toast({
-                            text: "LogIn Successful!",
-                            heading: 'Success...',
+                            heading: 'Success',
+                            text: 'Login successful! Redirecting...',
                             icon: 'success',
-                            showHideTransition: 'slide',
-                            allowToastClose: true,
-                            hideAfter: 3000,
-                            stack: 10,
-                            position: 'top-center',
-                            textAlign: 'left',
-                            loader: true,
-                            loaderBg: '#24ffb6',
+                            position: 'top-right',
+                            loaderBg: '#007bff',
+                            hideAfter: 3000
                         });
-                        window.location.href="addBank.jsp";
-                    }else{
+
+                        setTimeout(function() {
+                            window.location.href = 'index.jsp';
+                        }, 3000);
+                    } else {
                         $.toast({
-                            text: "Something went wrong on admin!",
-                            heading: 'Failed...',
+                            heading: 'Error',
+                            text: 'Invalid email or password. Please try again.',
                             icon: 'error',
-                            showHideTransition: 'slide',
-                            allowToastClose: true,
-                            hideAfter: 3000,
-                            stack: 10,
-                            position: 'top-center',
-                            textAlign: 'left',
-                            loader: true,
-                            loaderBg: '#9EC600',
+                            position: 'top-right',
+                            loaderBg: '#ff0000',
+                            hideAfter: 5000
                         });
                     }
                 },
-                cache: false,
-                contentType: false,
-                processData: false,
-
-                error:function(jqXHR,textStatus,errorThrown){
-                    console.log("error...")
+                error: function() {
                     $.toast({
-                        text: "Something went wrong on server!",
-                        heading: 'Failed...',
+                        heading: 'Error',
+                        text: 'An error occurred while processing your request.',
                         icon: 'error',
-                        showHideTransition: 'slide',
-                        allowToastClose: true,
-                        hideAfter: 3000,
-                        stack: 10,
-                        position: 'top-center',
-                        textAlign: 'left',
-                        loader: true,
-                        loaderBg: '#9EC600',
+                        position: 'top-right',
+                        loaderBg: '#ff0000',
+                        hideAfter: 5000
                     });
                 }
             });
-            return false;
         });
     });
 </script>
 </body>
 </html>
-

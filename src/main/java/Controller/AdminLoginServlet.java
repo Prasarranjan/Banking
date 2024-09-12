@@ -1,5 +1,6 @@
 package Controller;
 
+import Bean.Admin;
 import Dao.LoginDao;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -23,15 +24,28 @@ public class AdminLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html:charset=UTF-8");
         PrintWriter out = response.getWriter();
-
+        String event = request.getParameter("event");
+        System.out.println(event);
+        if (event.equals("login")) {
+            System.out.println("asuchi");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-        boolean isValidAdmin = LoginDao.validateAdmin(email, password);
+            boolean isValidAdmin = LoginDao.validateAdmin(email, password);
+            System.out.println(email);
+            System.out.println(password);
+            System.out.println(isValidAdmin);
+            if (isValidAdmin) {
+                out.print("done");
+                Admin admin = LoginDao.getAdminByEmailAndPassword(email, password);
 
-               if (isValidAdmin) {
-                   out.print("done");
-               } else {
-                   out.print("error");
-               }
+                HttpSession session = request.getSession();
+                    session.setAttribute("adminId", admin.getAdminId());
+                    session.setAttribute("adminName", admin.getAdminName());
+                session.setAttribute("adminPhoto", "assets/AdminImg/" + admin.getAdminPhoto());
+
+                } else {
+                out.print("error");
+            }
+        }
     }
 }

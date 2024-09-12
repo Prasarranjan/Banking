@@ -36,17 +36,17 @@
             <li class="nav-item dropdown dropdown-large">
               <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
                 <div class="user-setting d-flex align-items-center gap-1">
-                  <img src="assets/AdminImg/17258490007861.jpg" class="user-img" alt="">
-                  <div class="user-name d-none d-sm-block">Prasar Ranjan Satpathy</div>
+                  <img src="<%=session.getAttribute("adminPhoto")%> "class="user-img" alt="">
+                  <div class="user-name d-none d-sm-block"><%=session.getAttribute("adminName")%></div>
                 </div>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li>
                    <a class="dropdown-item" href="#">
                      <div class="d-flex align-items-center">
-                        <img src="assets/AdminImg/17258490007861.jpg" alt="" class="rounded-circle" width="60" height="60">
+                        <img src="<%=session.getAttribute("adminPhoto")%> " alt="" class="rounded-circle" width="60" height="60">
                         <div class="ms-3">
-                          <h6 class="mb-0 dropdown-user-name">Prasar Ranjan Satpathy</h6>
+                          <h6 class="mb-0 dropdown-user-name"><%=session.getAttribute("adminName")%></h6>
                           <small class="mb-0 dropdown-user-designation text-secondary">Co-Owner(eBank)</small>
                         </div>
                      </div>
