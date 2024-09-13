@@ -154,10 +154,65 @@ public class AccountServlet extends HttpServlet {
                                     MimeMessage message = new MimeMessage(session);
                                     message.setFrom(new InternetAddress("infoebank17@gmail.com")); // sender email
                                     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to)); // recipient email
-                                    message.setSubject("Congratulations dear  "+ firstName);
-                                    message.setText("Your account in eBank is  created successfully! Your User ID is: " + userId +
-                                            " and your Password is: " + password                      +
-                                            ". It may take up to 1 hour for your account to be activated. Once the ADMIN approves your request, you will be able to log in. THANK YOU!");
+                                    message.setSubject("🎉 Congratulations, " + firstName + "!");
+                                    message.setContent(
+                                            "<!DOCTYPE html>" +
+                                                    "<html>" +
+                                                    "<head>" +
+                                                    "    <style>" +
+                                                    "        body {" +
+                                                    "            font-family: Arial, sans-serif;" +
+                                                    "            background-color: #f4f4f4;" +
+                                                    "            color: #333;" +
+                                                    "        }" +
+                                                    "        .container {" +
+                                                    "            max-width: 600px;" +
+                                                    "            margin: 0 auto;" +
+                                                    "            padding: 20px;" +
+                                                    "            background-color: #fff;" +
+                                                    "            border-radius: 8px;" +
+                                                    "            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);" +
+                                                    "        }" +
+                                                    "        h1 {" +
+                                                    "            color: #4CAF50;" +
+                                                    "        }" +
+                                                    "        .user-info {" +
+                                                    "            background-color: #f9f9f9;" +
+                                                    "            padding: 10px;" +
+                                                    "            border-radius: 5px;" +
+                                                    "            margin-bottom: 20px;" +
+                                                    "        }" +
+                                                    "        .cta {" +
+                                                    "            background-color: #4CAF50;" +
+                                                    "            color: white;" +
+                                                    "            padding: 10px 15px;" +
+                                                    "            border-radius: 5px;" +
+                                                    "            text-decoration: none;" +
+                                                    "            font-weight: bold;" +
+                                                    "            display: inline-block;" +
+                                                    "            margin-top: 10px;" +
+                                                    "        }" +
+                                                    "        .cta:hover {" +
+                                                    "            background-color: #45a049;" +
+                                                    "        }" +
+                                                    "    </style>" +
+                                                    "</head>" +
+                                                    "<body>" +
+                                                    "    <div class='container'>" +
+                                                    "        <h1>🎉 Congratulations, " + firstName + "!</h1>" +
+                                                    "        <p>Your account at <strong>eBank</strong> has been successfully created!</p>" +
+                                                    "        <div class='user-info'>" +
+                                                    "            <p><strong>Your User ID:</strong> " + userId + "</p>" +
+                                                    "            <p><strong>Your Password:</strong> " + password + "</p>" +
+                                                    "        </div>" +
+                                                    "        <p>It may take up to 1 hour for your account to be activated. Once the <strong>ADMIN</strong> approves your request, you will be able to log in.</p>" +
+                                                    "        <p>Thank you for choosing <strong>eBank</strong>! We look forward to serving you.</p>" +
+                                                    "        <a href='#' class='cta'>Login to eBank</a>" +
+                                                    "    </div>" +
+                                                    "</body>" +
+                                                    "</html>",
+                                            "text/html; charset=utf-8"
+                                    );
 
                                     System.out.println("Prepared Message: " + message);
 
