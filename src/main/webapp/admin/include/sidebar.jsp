@@ -71,7 +71,7 @@
       </a>
       <ul>
         <li><a href="addAccount.jsp"><i class="bi bi-plus-circle-fill"></i>Add Account</a></li>
-        <li><a href="Maintainance.jsp"><i class="bi bi-eye-fill"></i>View Account</a></li>
+        <li><a href="ViewAccount.jsp"><i class="bi bi-eye-fill"></i>View Account</a></li>
       </ul>
     </li>
 

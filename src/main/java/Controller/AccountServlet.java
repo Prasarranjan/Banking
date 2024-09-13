@@ -1,10 +1,13 @@
 package Controller;
 
+import Bean.AccountDetails;
 import Bean.customer;
 import Dao.AccountDao;
 import Dao.CustomerDao;
 import Dao.DeviceDao;
 import Util.DbConnection;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
@@ -21,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
@@ -237,8 +241,20 @@ public class AccountServlet extends HttpServlet {
                     }
                 }
             }
+        } else if (event.equals("getAccount")) {
+
+                try {
+                    AccountDao ad=new AccountDao();
+                    List<AccountDetails> listacc= ad.viewAccounts();
+                    GsonBuilder gsonBuilder = new GsonBuilder();
+                    Gson gson = gsonBuilder.create();
+                    String JSONObject = gson.toJson(listacc);
+                    out.print(JSONObject);
+                }catch(Exception e) {
+                    e.printStackTrace();
+                }
         }
-                        }
+    }
             }
 
 
