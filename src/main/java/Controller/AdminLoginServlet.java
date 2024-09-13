@@ -25,15 +25,11 @@ public class AdminLoginServlet extends HttpServlet {
         response.setContentType("text/html:charset=UTF-8");
         PrintWriter out = response.getWriter();
         String event = request.getParameter("event");
-        System.out.println(event);
         if (event.equals("login")) {
-            System.out.println("asuchi");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             boolean isValidAdmin = LoginDao.validateAdmin(email, password);
-            System.out.println(email);
-            System.out.println(password);
-            System.out.println(isValidAdmin);
+
             if (isValidAdmin) {
                 out.print("done");
                 Admin admin = LoginDao.getAdminByEmailAndPassword(email, password);
@@ -47,5 +43,6 @@ public class AdminLoginServlet extends HttpServlet {
                 out.print("error");
             }
         }
+
     }
 }
