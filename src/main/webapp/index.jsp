@@ -1,7 +1,23 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: prasar
+  Date: 9/14/24
+  Time: 4:01 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<a href="admin/index.jsp">admin</a>
+</body>
+</html>
 <!doctype html>
 <html lang="en">
 <head>
-    <title>eBank</title>
+    <title>Banking</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -60,7 +76,7 @@
                 <div class="col-md-10 mt-lg-5 text-center">
                     <div class="single-text owl-carousel">
                         <div class="slide">
-                            <h1 class="text-uppercase" data-aos="fade-up">e-Banking Solutions</h1>
+                            <h1 class="text-uppercase" data-aos="fade-up">Banking Solutions</h1>
                             <p class="mb-5 desc"  data-aos="fade-up" data-aos-delay="100">Banking solutions encompass a range of financial services tailored to meet the needs of individuals, businesses, and institutions. These offerings include online banking platforms, mobile banking apps, wealth management tools, and personalized advisory services, aiming to streamline transactions and optimize financial management.</p>
                             <div data-aos="fade-up" data-aos-delay="100">
                                 <a href="#" target="_blank" class="btn  btn-primary mr-2 mb-2">Get In Touch</a>
@@ -79,7 +95,7 @@
                             <h1 class="text-uppercase" data-aos="fade-up">Savings Accounts</h1>
                             <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Savings accounts are financial instruments offered by banks and credit unions where individuals can deposit money for safekeeping and earn interest over time. They provide a secure way to accumulate funds while offering liquidity for withdrawals when needed, making them a cornerstone of personal financial management.</p>
                             <div data-aos="fade-up" data-aos-delay="100">
-                                <a href="user/createNewAccount.jsp" target="_blank" class="btn  btn-primary mr-2 mb-2">Get In Touch</a>
+                                <a href="createNewAccount.jsp" target="_blank" class="btn  btn-primary mr-2 mb-2">Get In Touch</a>
                             </div>
                         </div>
 
