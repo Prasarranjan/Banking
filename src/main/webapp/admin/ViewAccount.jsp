@@ -93,8 +93,8 @@
                             <th>Account Number</th>
                             <th>Opening Date</th>
                             <th>Balance</th>
-                            <th>Device</th>
-<%--                            <th>Status</th>--%>
+                            <th>Location</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -262,25 +262,49 @@
                     let s="";
                     let i=1;
                     for (var key in data) {
+                        var status = data[key].isActive;
                         if (data.hasOwnProperty(key)) {
-                            console.log(data[key].customerImage)
-                            s+="<tr>";
-                            s+="<td>"+i+"</td>";
-                            s+="<td><div class='d-flex align-items-center gap-3 cursor-pointer'>";
-                            s+="<img src='assets/costumerImage/"+data[key].customerImage+"'class='product-box' width='44' height='44' alt=''>";
-                            s+="<div class=''><p class='mb-0'>"+data[key].customerName+" </p></div></div> </td>";
-                            s+="<td>"+data[key].branchName+"</td>";
-                            s+="<td>"+data[key].accountTypeName+"</td>";
-                            s+="<td>"+data[key].accountNumber+"</td>";
-                            s+="<td>"+data[key].openingDate+"</td>";
-                            s+="<td>"+data[key].balance+"</td>";
-                            s+="<td>"+data[key].latitude+"</td>";
-                            s+="<td><div class='table-actions d-flex align-items-center gap-3 fs-6'>";
-                            s+="<a  class='text-info bank_edit' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Edit' data-id='"+data[key].custId+"' id='"+data[key].custId+"'><i class='bi bi-pencil-fill'></i></a>";
-                            s+="<a  class='text-danger bank_delete' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete' data-id='"+data[key].custId+"' id='"+data[key].custId+"'><i class='bi bi-trash-fill'></i></a>";
-                            s+="</div></td></tr>";
+                            if (status > 0) {
+                                s += "<tr>";
+                                s += "<td>" + i + "</td>";
+                                s += "<td><div class='d-flex align-items-center gap-3 cursor-pointer'>";
+                                s += "<img src='assets/costumerImage/" + data[key].customerImage + "'class='product-box' width='44' height='44' alt=''>";
+                                s += "<div class=''><p class='mb-0'>" + data[key].customerName + " </p></div></div> </td>";
+                                s += "<td>" + data[key].branchName + "</td>";
+                                s += "<td>" + data[key].accountTypeName + "</td>";
+                                s += "<td>" + data[key].accountNumber + "</td>";
+                                s += "<td>" + data[key].openingDate + "</td>";
+                                s += "<td>" + data[key].balance + "</td>";
+                                s += "<td>" + data[key].latitude + "</td>";
+                                s += "<td><span class='badge bg-success'>Active</span></td>";
+
+                                s += "<td><div class='table-actions d-flex align-items-center gap-3 fs-6'>";
+                                s += "<a  class='text-info bank_edit' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Edit' data-id='" + data[key].custId + "' id='" + data[key].custId + "'><i class='bi bi-pencil-fill'></i></a>";
+                                s += "<a  class='text-danger bank_delete' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete' data-id='" + data[key].custId + "' id='" + data[key].custId + "'><i class='bi bi-trash-fill'></i></a>";
+                                s += "</div></td></tr>";
+                                i++;
+                            }
+                            else {
+                                s += "<tr>";
+                                s += "<td>" + i + "</td>";
+                                s += "<td><div class='d-flex align-items-center gap-3 cursor-pointer'>";
+                                s += "<img src='assets/costumerImage/" + data[key].customerImage + "'class='product-box' width='44' height='44' alt=''>";
+                                s += "<div class=''><p class='mb-0'>" + data[key].customerName + " </p></div></div> </td>";
+                                s += "<td>" + data[key].branchName + "</td>";
+                                s += "<td>" + data[key].accountTypeName + "</td>";
+                                s += "<td>" + data[key].accountNumber + "</td>";
+                                s += "<td>" + data[key].openingDate + "</td>";
+                                s += "<td>" + data[key].balance + "</td>";
+                                s += "<td>" + data[key].latitude + "</td>";
+                                s += "<td><span class='badge bg-warning'>Deactive</span></td>";
+
+                                s += "<td><div class='table-actions d-flex align-items-center gap-3 fs-6'>";
+                                s += "<a  class='text-info bank_edit' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Edit' data-id='" + data[key].custId + "' id='" + data[key].custId + "'><i class='bi bi-pencil-fill'></i></a>";
+                                s += "<a  class='text-danger bank_delete' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete' data-id='" + data[key].custId + "' id='" + data[key].custId + "'><i class='bi bi-trash-fill'></i></a>";
+                                s += "</div></td></tr>";
+                                i++;
+                            }
                         }
-                        i++;
                     }
                     $('#viewBank').html(s);
                 },
@@ -362,6 +386,7 @@
             url:'../BankServlet',
             data:{"id":id,"event":"editCust"},
             dataType:"JSON",
+
             success: function(response) {
                 $("#custId").val(response[0].custId);
                 $("#custFname").val(response[0].custFname);

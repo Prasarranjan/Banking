@@ -56,7 +56,7 @@ public class AccountDao {
             while(rs.next())
             {
                 AccountDetails br = new AccountDetails();
-                br.setCustomerName(rs.getString(1));
+                br.setCustomerImage(rs.getString(1));
                 br.setCustomerName(rs.getString(2));
                 br.setBranchName(rs.getString(3));
                 br.setAccountTypeName(rs.getString(4));

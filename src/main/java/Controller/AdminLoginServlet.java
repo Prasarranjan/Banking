@@ -37,7 +37,7 @@ public class AdminLoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                     session.setAttribute("adminId", admin.getAdminId());
                     session.setAttribute("adminName", admin.getAdminName());
-                session.setAttribute("adminPhoto", "assets/AdminImg/" + admin.getAdminPhoto());
+                   session.setAttribute("adminPhoto", "assets/AdminImg/" + admin.getAdminPhoto());
 
                 } else {
                 out.print("error");
