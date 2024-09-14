@@ -10,9 +10,7 @@
 <head>
     <title>Title</title>
 </head>
-<body>
-<a href="admin/index.jsp">admin</a>
-</body>
+
 </html>
 <!doctype html>
 <html lang="en">
