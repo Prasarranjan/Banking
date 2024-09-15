@@ -69,19 +69,19 @@
           <div class="col-md-4 text-center">
             <p class="mb-4">
               <span class="icon-room d-block h2 text-primary"></span>
-              <span> Plot No A 58, Phase 2, Krishna Gardens, Jagamara, Khandagiri, Bhubaneshwar - 751030.</span>
+              <span> Jatani, Bhubaneshwar - 752050.</span>
             </p>
           </div>
           <div class="col-md-4 text-center">
             <p class="mb-4">
               <span class="icon-phone d-block h2 text-primary"></span>
-              <a href="#">+91 8144469762</a>
+              <a href="#">+91 7606991742</a>
             </p>
           </div>
           <div class="col-md-4 text-center">
             <p class="mb-0">
               <span class="icon-mail_outline d-block h2 text-primary"></span>
-              <a href="#">info@opentechz.com</a>
+              <a href="#">infoebank17@gmail.com</a>
             </p>
           </div>
         </div>
