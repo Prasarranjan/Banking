@@ -530,7 +530,7 @@
 
                     <figure class="mb-4 d-flex align-items-center justify-content-center">
                         <div><img src="assets/images/person_1.jpg" alt="Image" class="w-50 img-fluid mb-3"></div>
-                        <p>John Smith</p>
+                        <p>Trilochan Panda</p>
                     </figure>
                 </div>
             </div>
@@ -542,7 +542,7 @@
                     </blockquote>
                     <figure class="mb-4 d-flex align-items-center justify-content-center">
                         <div><img src="assets/images/person_2.jpg" alt="Image" class="w-50 img-fluid mb-3"></div>
-                        <p>Christine Aguilar</p>
+                        <p>Srikanta  Khuntia</p>
                     </figure>
 
                 </div>
@@ -556,7 +556,7 @@
                     </blockquote>
                     <figure class="mb-4 d-flex align-items-center justify-content-center">
                         <div><img src="assets/images/person_3.jpg" alt="Image" class="w-50 img-fluid mb-3"></div>
-                        <p>Robert Spears</p>
+                        <p>Suraj Nayak</p>
                     </figure>
 
 
@@ -571,7 +571,7 @@
                     </blockquote>
                     <figure class="mb-4 d-flex align-items-center justify-content-center">
                         <div><img src="assets/images/person_1.jpg" alt="Image" class="w-50 img-fluid mb-3"></div>
-                        <p>Bruce Rogers</p>
+                        <p>Harihar Mohapatra</p>
                     </figure>
 
                 </div>
