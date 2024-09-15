@@ -82,10 +82,10 @@
                         </div>
 
                         <div class="slide">
-                            <h1 class="text-uppercase" data-aos="fade-up">Financing Solutions</h1>
+                            <h1 class="text-uppercase" data-aos="fade-up">We Provide Loan</h1>
                             <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Financing solutions involve various strategies and products designed to provide funds for individuals, businesses, or projects. These solutions can include loans, lines of credit, leasing arrangements, venture capital, and crowdfunding, tailored to meet diverse funding needs and objectives.</p>
                             <div data-aos="fade-up" data-aos-delay="100">
-                                <a href="#" target="_blank" class="btn  btn-primary mr-2 mb-2">Get In Touch</a>
+                                <a href="#" target="_blank" class="btn  btn-primary mr-2 mbSolutions-2">Get In Touch</a>
                             </div>
                         </div>
 
@@ -127,7 +127,7 @@
                 </div>
                 <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
 
-                    <h3 class="text-black mb-4">We Solve Your Financial Problem</h3>
+                    <h3 class="text-black mb-4">We Provide  Financial Loan</h3>
 
                     <p>At We Solve Your Financial Problem, we're dedicated to providing tailored solutions to alleviate your financial burdens. With expert guidance and personalized assistance, we strive to ensure your financial well-being and help you achieve your goals. </p>
 
@@ -209,16 +209,16 @@
                     <div class="team-member">
                         <figure>
                             <ul class="social">
-                                <li><a href="#"><span class="icon-facebook"></span></a></li>
-                                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                                <li><a href="https://github.com/Prasarranjan"><span class="icon-github"></span></a></li>
+                                <li><a href="https://x.com/prasar7707?t=ncAvfg-ktorSjNAzTP4xrQ&s=08"><span class="icon-twitter"></span></a></li>
+                                <li><a href="https://www.linkedin.com/in/prasar-ranjan-b941942a1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><span class="icon-linkedin"></span></a></li>
+                                <li><a href="https://www.instagram.com/iamprasarranjan_?igsh=YmZ4YXptMjY2Yzdh"><span class="icon-instagram"></span></a></li>
                             </ul>
-                            <img src="assets/images/person_1.jpg" alt="Image" class="img-fluid">
+                            <img src="admin/assets/AdminImg/17258490007861.jpg" alt="Image" class="img-fluid">
                         </figure>
                         <div class="p-3">
-                            <h3>Kaiara Spencer</h3>
-                            <span class="position">Accountant</span>
+                            <h3>Prasar Ranjan</h3>
+                            <span class="position">Admin</span>
                         </div>
                     </div>
                 </div>
@@ -227,16 +227,16 @@
                     <div class="team-member">
                         <figure>
                             <ul class="social">
-                                <li><a href="#"><span class="icon-facebook"></span></a></li>
-                                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                                <li><a href="https://github.com/Prasarranjan"><span class="icon-github"></span></a></li>
+                                <li><a href="https://x.com/prasar7707?t=ncAvfg-ktorSjNAzTP4xrQ&s=08"><span class="icon-twitter"></span></a></li>
+                                <li><a href="https://www.linkedin.com/in/prasar-ranjan-b941942a1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><span class="icon-linkedin"></span></a></li>
+                                <li><a href="https://www.instagram.com/iamprasarranjan_?igsh=YmZ4YXptMjY2Yzdh"><span class="icon-instagram"></span></a></li>
                             </ul>
-                            <img src="assets/images/person_2.jpg" alt="Image" class="img-fluid">
+                            <img src="admin/assets/AdminImg/17261690942521.jpg" alt="Image" class="img-fluid">
                         </figure>
                         <div class="p-3">
-                            <h3>Dave Simpson</h3>
-                            <span class="position">Bank Teller</span>
+                            <h3>Harapriya Panda</h3>
+                            <span class="position">Admin</span>
                         </div>
                     </div>
                 </div>
