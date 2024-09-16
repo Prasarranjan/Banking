@@ -5,7 +5,7 @@
             <div class="row">
               <div class="col-md-5">
                 <h2 class="footer-heading mb-4">About Us</h2>
-                <p>Banking web app service offers convenient, secure access to financial functionalities like account management and transfers.</p>
+                <p>Pay web app service offers convenient, secure access to financial functionalities like account management and transfers.</p>
               </div>
               <div class="col-md-3 ml-auto">
                 <h2 class="footer-heading mb-4">Quick Links</h2>
