@@ -47,7 +47,7 @@
                         <img src="<%=session.getAttribute("adminPhoto")%> " alt="" class="rounded-circle" width="60" height="60">
                         <div class="ms-3">
                           <h6 class="mb-0 dropdown-user-name"><%=session.getAttribute("adminName")%></h6>
-                          <small class="mb-0 dropdown-user-designation text-secondary">eBank Admin</small>
+                          <small class="mb-0 dropdown-user-designation text-secondary">Web Pay Admin</small>
                         </div>
                      </div>
                    </a>
