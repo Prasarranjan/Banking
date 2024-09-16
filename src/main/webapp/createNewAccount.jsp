@@ -188,6 +188,9 @@
 
 
             </form>
+              <span class="text-danger">*After a successful registration you will get a gmail from infoebank17@gmail.com adressing your userid and password.Thank you</span>
+
+
           </div>
 
         </div>

@@ -125,11 +125,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="custEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="custEmail" name="custEmail" required>
+                                <input type="email" class="form-control" id="custEmail" name="custEmail" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="custPass" class="form-label">Password</label>
-                                <input type="text" class="form-control" id="custPass" name="custPass" required>
+                                <input type="text" class="form-control" id="custPass" name="custPass" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="custDOB" class="form-label">Date of Birth</label>
