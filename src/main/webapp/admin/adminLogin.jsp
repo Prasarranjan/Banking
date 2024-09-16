@@ -129,8 +129,11 @@
             cursor: pointer;
         }
     </style>
+
 </head>
+
 <body>
+
 <div class="login-container">
     <div class="image-container"></div>
     <div class="form-container">

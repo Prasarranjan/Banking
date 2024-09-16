@@ -69,19 +69,21 @@
 
 						<!-- Email input -->
 						<div data-mdb-input-init class="form-outline mb-4">
+							<label
+									class="form-label" for="form3Example3">User Id</label>
 							<input type="text" name="userid" id="form3Example3"
 								class="form-control form-control-lg"
-								placeholder="Enter a valid user id" /> <label
-								class="form-label" for="form3Example3">User Id</label>
+								placeholder="Enter a valid user id" />
 							 <input type="hidden" name="event" value="userlogin">
 						</div>
 
 						<!-- Password input -->
 						<div data-mdb-input-init class="form-outline mb-3">
+							<label class="form-label"
+								   for="form3Example4">Password</label>
 							<input type="password" name="password" id="form3Example4"
 								class="form-control form-control-lg"
-								placeholder="Enter password" /> <label class="form-label"
-								for="form3Example4">Password</label>
+								placeholder="Enter password" />
 						</div>
 
 						<div class="d-flex justify-content-between align-items-center">
