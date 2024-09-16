@@ -40,12 +40,12 @@
                   <li class="social"><a href="myAccount.jsp" style="color:#5176f0!important" class="nav-link">My Account</a></li>
                 
                 <%
-                            	String name = (String) session.getAttribute("name");
+                            	String name = (String) session.getAttribute("username");
 								String email = (String) session.getAttribute("username");
 								
 								if(email != "" && email != null ){	
 				%>|
-                <li class="social"style="color:#ff1717!important">Welcome Mr.  <% out.print(name);%></li>|
+                <li class="social"style="color:#ff1717!important">Welcome   <% out.print(name);%></li>|
                 <li class="social"><a href="logout.jsp" style="color:#5176f0!important" class="nav-link">Logout</a></li>
                 <% 
 						     	}else{

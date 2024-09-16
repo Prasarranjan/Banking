@@ -45,7 +45,7 @@ public class CustomerLoginServlet extends HttpServlet {
                 if (admin.getIsActive()) {
                     // Set additional session attributes if the user is active
                     session.setAttribute("username", admin.getCustomerName());
-                    session.setAttribute("userphoto", "assets/AdminImg/" + admin.getCustomerImage());
+                    session.setAttribute("userphoto", admin.getCustomerImage());
                     session.setAttribute("branchname", admin.getBranchName());
                     session.setAttribute("acctypename", admin.getAccountTypeName());
                     session.setAttribute("accnumber", admin.getAccountNumber());
@@ -57,7 +57,7 @@ public class CustomerLoginServlet extends HttpServlet {
                     out.print("error");
                 }
             } else {
-                out.print("Invalid credentials");
+                out.print("notConfirms");
             }
         } else {
             out.print("Invalid event");

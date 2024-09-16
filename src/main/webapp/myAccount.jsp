@@ -36,9 +36,9 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
   <link href="assets/jquery-toast/dist/jquery.toast.min.css" rel="stylesheet" />
     <style>
 	.btn-xl {
-    
-    
-    width:100%;    
+
+
+    width:100%;
 }
 </style>
 </head>
@@ -74,16 +74,16 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 				<div class="row">
 					<div class="col-lg-4">
 						<div class="card " style="width: 18rem;">
-							<div class="d-flex justify-content-center"><img src="admin/assets/custImg/<% out.print(request.getSession().getAttribute("img")); %>" class="card-img-top rounded-circle pt-1" style="height:120px;width:120px;" alt="not found "></div>
+							<div class="d-flex justify-content-center"><img src="admin/assets/costumerImage/<% out.print(request.getSession().getAttribute("userphoto")); %>" class="card-img-top rounded-circle pt-1" style="height:120px;width:120px;" alt="not found "></div>
 							<div class="d-flex justify-content-center">
-								<h6>Mr.<% out.print(request.getSession().getAttribute("name")); %></h6>
-							   
+								<h6>Mr.<% out.print(request.getSession().getAttribute("username")); %></h6>
+
 							</div>
 							<div class="d-flex justify-content-center">
-							   <h6>Account Number : <% out.print(request.getSession().getAttribute("accNum")); %></h6>
+							   <h6>Account Number : <% out.print(request.getSession().getAttribute("accnumber")); %></h6>
 							</div>
 							<div class="card-body text-center">
-							
+
 							<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 							  <a class="nav-link active" id="aa" data-toggle="pill" href="#Account" role="tab" aria-controls="a" aria-selected="true">My Account</a>
 							  <a class="nav-link" id="bb" data-toggle="pill" href="#Password" role="tab" aria-controls="b" aria-selected="false">Change Password</a>
@@ -92,9 +92,9 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 							   <a class="nav-link " id="ee" data-toggle="pill" href="#Lone" role="tab" aria-controls="e" aria-selected="false">Apply Loan</a>
 							  <a class="nav-link" id="ff" data-toggle="pill" href="#Credit" role="tab" aria-controls="f" aria-selected="false">Credit Score</a>
 							  <a class="nav-link" id="gg" data-toggle="pill" href="#history" role="tab" aria-controls="g" aria-selected="false">History</a>
-							  
+
 							</div>
-							
+
 						</div>
 						</div>
 					</div>
@@ -107,7 +107,7 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 							  			 <div class="form-group  row">
 										    <label for="staticFname" class="col-sm-2 col-form-label">Name</label>
 										    <div class="col-sm-5 mb-3 mb-md-0">
-										     
+
 										      <input type="text" name="custFname" class="form-control" id="staticFname" >
 										       <input type="hidden"  class="form-control" name="event" value="updateCustBasicDetails">
 										    </div>
@@ -211,7 +211,7 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 										     	<option value="offline">Offline</option>
 										     	<option value="digital">Digital</option>
 										     </select>
-										      
+
 										    </div>
 									        <label for="type" class=" col-form-label"></label>
 										    <div class="col-sm-5  mb-3 mb-md-0">
@@ -248,11 +248,11 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 						     </div>
 							 <div class="tab-pane fade" id="Credit" role="tabpanel" aria-labelledby="ff">
 									<div class="pt-3 p-5" style="font-size:30px; color:blue;">
-										<h1>Your Credit Score is : <b>850</b> </h1>
+										<h1>Your Credit Score is : <b>650</b> </h1>
 									</div>
 							</div>
 							<div class="tab-pane fade " id="history" role="tabpanel" aria-labelledby="gg">
-										
+
 
 							  <table id="example" class="table table-striped table-bordered" style="width:100%">
 							    <thead>
@@ -269,8 +269,8 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 							      </tr>
 							    </thead>
 							    <tbody id="viewTranscation">
-							      
-							      
+
+
 							      <!-- Add more rows as needed -->
 							    </tbody>
 							  </table>
@@ -305,7 +305,7 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 	<!--  toast -->
    <script src="assets/jquery-toast/src/jquery.toast.js"></script>
   <script src="assets/jquery-toast/dist/jquery.toast.min.js"></script>
- 	
+
 	<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -325,30 +325,30 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 		</script>
 		<script type="text/javascript">
 		$(document).ready(function() {
-				
+
 	        	let event ="event=getAllTransactionCustID";
 	        	$.ajax({
 	    			url:"transServlet",
 	    			data:event,
 	    			type:"POST",
 	    			dataType:"json",
-	    			success:function(data,textStatus,jqXHR){ 					 
-	    				console.log(data);	  
-	    				
+	    			success:function(data,textStatus,jqXHR){
+	    				console.log(data);
+
 	    				 let s="";
 	    				 let i=1;
 	    				for (var key in data) {
 	    					if (data.hasOwnProperty(key)) {
 	    						var status=data[0].transStatus;
 	    					    if(status==1){
-		    						
+
 		    						  s+="<tr>";
 			    					  s+="<td>"+i+"</td>";
 			    					  s+="<td>";
 			    					  s+="<div class=''><p class='mb-0'>"+data[0].transNum+"</p></div> </td>";
 			    					  s+="<td>"+data[0].bFname+" "+data[0].bLname+"</td>";
 			    					  s+="<td>"+data[0].bAccNum+"</td>";
-			    					  s+="<td>"+data[0].transDate+"</td>";		    					  
+			    					  s+="<td>"+data[0].transDate+"</td>";
 			    					  s+="<td>"+data[0].amount+"</td>";
 			    					  s+="<td>"+data[0].transMode+"</td>";
 			    					  s+="<td>"+data[0].transType+"</td>";
@@ -361,7 +361,7 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 			    					  s+="<div class=''><p class='mb-0'>"+data[0].transNum+"</p></div> </td>";
 			    					  s+="<td>"+data[0].bFname+" "+data[0].bLname+"</td>";
 			    					  s+="<td>"+data[0].bAccNum+"</td>";
-			    					  s+="<td>"+data[0].transDate+"</td>";		    					  
+			    					  s+="<td>"+data[0].transDate+"</td>";
 			    					  s+="<td>"+data[0].amount+"</td>";
 			    					  s+="<td>"+data[0].transMode+"</td>";
 			    					  s+="<td>"+data[0].transType+"</td>";
@@ -379,12 +379,12 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 	    				console.log("error...")
 	    			}
 	    	    });
-			
-				
+
+
 	        });
 		</script>
 	<script>
-		  	$(document).ready(function(){				    
+		  	$(document).ready(function(){
 		  		console.log("page is ready .....");
 		  		$("#billertransfer").on('submit',function(event){
 		  			event.preventDefault();
@@ -393,70 +393,70 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 		  				url:"billerServlet",
 		  				data:f,
 		  				type:'POST',
-		  			
-		  				success:function(data,textStatus,jqXHR){		  				
+
+		  				success:function(data,textStatus,jqXHR){
 		  					if(data.trim()=='done'){
 			  					$.toast({
-			  					    text: "Sent Successfully !", 
-			  					    heading: 'Success...', 
+			  					    text: "Sent Successfully !",
+			  					    heading: 'Success...',
 			  					    icon: 'success',
-			  					    showHideTransition: 'slide', 
-			  					    allowToastClose: true, 
-			  					    hideAfter: 3000, 
-			  					    stack: 10, 
-			  					    position: 'top-center',            
-			  					    textAlign: 'left',  
-			  					    loader: true,  
+			  					    showHideTransition: 'slide',
+			  					    allowToastClose: true,
+			  					    hideAfter: 3000,
+			  					    stack: 10,
+			  					    position: 'top-center',
+			  					    textAlign: 'left',
+			  					    loader: true,
 			  					    loaderBg: '#24ffb6',
 			  					});
-			  					$('#billertransfer')[0].reset();		  				
+			  					$('#billertransfer')[0].reset();
 			  		  		}else if(data.trim() ==='failed'){
 					  		  		$.toast({
-					  		  	    text: "Something went wrong on server!", 
-					  		  	    heading: 'Failed...', 
-					  		  	    icon: 'error', 
-					  		  	    showHideTransition: 'slide', 
-					  		  	    allowToastClose: true, 
-					  		  	    hideAfter: 3000, 
-					  		  	    stack: 10, 
-					  		  	    position: 'top-center',         
-					  		  	    textAlign: 'left',  
+					  		  	    text: "Something went wrong on server!",
+					  		  	    heading: 'Failed...',
+					  		  	    icon: 'error',
+					  		  	    showHideTransition: 'slide',
+					  		  	    allowToastClose: true,
+					  		  	    hideAfter: 3000,
+					  		  	    stack: 10,
+					  		  	    position: 'top-center',
+					  		  	    textAlign: 'left',
 					  		  	    loader: true,
-					  		  	    loaderBg: '#9EC600', 
+					  		  	    loaderBg: '#9EC600',
 					  		  	});
 			  		  		}else if(data.trim() ==='insuficientBalance'){
 					  		  		$.toast({
-					  		  	    text: "Insuficient Balance", 
-					  		  	    heading: 'Failed...', 
-					  		  	    icon: 'error', 
-					  		  	    showHideTransition: 'slide', 
-					  		  	    allowToastClose: true, 
-					  		  	    hideAfter: 3000, 
-					  		  	    stack: 10, 
-					  		  	    position: 'top-center',         
-					  		  	    textAlign: 'left',  
+					  		  	    text: "Insuficient Balance",
+					  		  	    heading: 'Failed...',
+					  		  	    icon: 'error',
+					  		  	    showHideTransition: 'slide',
+					  		  	    allowToastClose: true,
+					  		  	    hideAfter: 3000,
+					  		  	    stack: 10,
+					  		  	    position: 'top-center',
+					  		  	    textAlign: 'left',
 					  		  	    loader: true,
-					  		  	    loaderBg: '#9EC600', 
+					  		  	    loaderBg: '#9EC600',
 					  		  	});
 			  		  		}
 		  				},
 		  				error:function(jqXHR,textStatus,errorThrown){
 							console.log("error...")
 							$.toast({
-				  		  	    text: "Something went wrong on server!", 
-				  		  	    heading: 'Failed...', 
-				  		  	    icon: 'error', 
-				  		  	    showHideTransition: 'slide', 
-				  		  	    allowToastClose: true, 
-				  		  	    hideAfter: 3000, 
-				  		  	    stack: 10, 
-				  		  	    position: 'top-center',         
-				  		  	    textAlign: 'left',  
+				  		  	    text: "Something went wrong on server!",
+				  		  	    heading: 'Failed...',
+				  		  	    icon: 'error',
+				  		  	    showHideTransition: 'slide',
+				  		  	    allowToastClose: true,
+				  		  	    hideAfter: 3000,
+				  		  	    stack: 10,
+				  		  	    position: 'top-center',
+				  		  	    textAlign: 'left',
 				  		  	    loader: true,
-				  		  	    loaderBg: '#9EC600', 
+				  		  	    loaderBg: '#9EC600',
 				  		  	});
-		  				} 				
-		  			});		  			
+		  				}
+		  			});
 		  		});
 		  	});
 		  </script>
@@ -466,7 +466,7 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 					 return this.optional(element) || value != $(param).val();
 					}, "This has to be different...");
 		   		$("#validate").validate({
-		   			
+
 			      	rules: {
 			      		oldPass: 'required',
 			      		newPass: {
@@ -493,7 +493,7 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 			});
 		</script>
 		<script>
-		  	$(document).ready(function(){				    
+		  	$(document).ready(function(){
 		  		console.log("page is ready .....");
 		  		$("#validate").on('submit',function(event){
 		  			event.preventDefault();
@@ -503,89 +503,89 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 		  				data:f,
 		  				type:'POST',
 		  				dataType:"json",
-		  				success:function(data,textStatus,jqXHR){		  				
+		  				success:function(data,textStatus,jqXHR){
 		  					if(data.trim() =='done'){
 			  					$.toast({
-			  					    text: "Password Successfully Changed!", 
-			  					    heading: 'Success...', 
+			  					    text: "Password Successfully Changed!",
+			  					    heading: 'Success...',
 			  					    icon: 'success',
-			  					    showHideTransition: 'slide', 
-			  					    allowToastClose: true, 
-			  					    hideAfter: 3000, 
-			  					    stack: 10, 
-			  					    position: 'top-center',            
-			  					    textAlign: 'left',  
-			  					    loader: true,  
+			  					    showHideTransition: 'slide',
+			  					    allowToastClose: true,
+			  					    hideAfter: 3000,
+			  					    stack: 10,
+			  					    position: 'top-center',
+			  					    textAlign: 'left',
+			  					    loader: true,
 			  					    loaderBg: '#24ffb6',
 			  					});
-			  					$('#validate')[0].reset();		  				
+			  					$('#validate')[0].reset();
 			  		  		}else if(data.trim() ==='error1'){
 					  		  		$.toast({
-					  		  	    text: "Old Password & New Password Should not Be Same!", 
-					  		  	    heading: 'Failed...', 
-					  		  	    icon: 'error', 
-					  		  	    showHideTransition: 'slide', 
-					  		  	    allowToastClose: true, 
-					  		  	    hideAfter: 3000, 
-					  		  	    stack: 10, 
-					  		  	    position: 'top-center',         
-					  		  	    textAlign: 'left',  
+					  		  	    text: "Old Password & New Password Should not Be Same!",
+					  		  	    heading: 'Failed...',
+					  		  	    icon: 'error',
+					  		  	    showHideTransition: 'slide',
+					  		  	    allowToastClose: true,
+					  		  	    hideAfter: 3000,
+					  		  	    stack: 10,
+					  		  	    position: 'top-center',
+					  		  	    textAlign: 'left',
 					  		  	    loader: true,
-					  		  	    loaderBg: '#9EC600', 
+					  		  	    loaderBg: '#9EC600',
 					  		  	});
 			  		  		}else if(data.trim() ==='error2'){
 					  		  		$.toast({
-					  		  	    text: "New Password & Confirm Password Should Be Same!", 
-					  		  	    heading: 'Failed...', 
-					  		  	    icon: 'error', 
-					  		  	    showHideTransition: 'slide', 
-					  		  	    allowToastClose: true, 
-					  		  	    hideAfter: 3000, 
-					  		  	    stack: 10, 
-					  		  	    position: 'top-center',         
-					  		  	    textAlign: 'left',  
+					  		  	    text: "New Password & Confirm Password Should Be Same!",
+					  		  	    heading: 'Failed...',
+					  		  	    icon: 'error',
+					  		  	    showHideTransition: 'slide',
+					  		  	    allowToastClose: true,
+					  		  	    hideAfter: 3000,
+					  		  	    stack: 10,
+					  		  	    position: 'top-center',
+					  		  	    textAlign: 'left',
 					  		  	    loader: true,
-					  		  	    loaderBg: '#9EC600', 
+					  		  	    loaderBg: '#9EC600',
 					  		  	});
 			  		  		}else if(data.trim() ==='error3'){
 					  		  		$.toast({
-					  		  	    text: "Old Password Not Matched!", 
-					  		  	    heading: 'Failed...', 
-					  		  	    icon: 'error', 
-					  		  	    showHideTransition: 'slide', 
-					  		  	    allowToastClose: true, 
-					  		  	    hideAfter: 3000, 
-					  		  	    stack: 10, 
-					  		  	    position: 'top-center',         
-					  		  	    textAlign: 'left',  
+					  		  	    text: "Old Password Not Matched!",
+					  		  	    heading: 'Failed...',
+					  		  	    icon: 'error',
+					  		  	    showHideTransition: 'slide',
+					  		  	    allowToastClose: true,
+					  		  	    hideAfter: 3000,
+					  		  	    stack: 10,
+					  		  	    position: 'top-center',
+					  		  	    textAlign: 'left',
 					  		  	    loader: true,
-					  		  	    loaderBg: '#9EC600', 
+					  		  	    loaderBg: '#9EC600',
 					  		  	});
 			  		  		}
 		  				},
 		  				error:function(jqXHR,textStatus,errorThrown){
 							console.log("error...")
 							$.toast({
-				  		  	    text: "Something went wrong on server!", 
-				  		  	    heading: 'Failed...', 
-				  		  	    icon: 'error', 
-				  		  	    showHideTransition: 'slide', 
-				  		  	    allowToastClose: true, 
-				  		  	    hideAfter: 3000, 
-				  		  	    stack: 10, 
-				  		  	    position: 'top-center',         
-				  		  	    textAlign: 'left',  
+				  		  	    text: "Something went wrong on server!",
+				  		  	    heading: 'Failed...',
+				  		  	    icon: 'error',
+				  		  	    showHideTransition: 'slide',
+				  		  	    allowToastClose: true,
+				  		  	    hideAfter: 3000,
+				  		  	    stack: 10,
+				  		  	    position: 'top-center',
+				  		  	    textAlign: 'left',
 				  		  	    loader: true,
-				  		  	    loaderBg: '#9EC600', 
+				  		  	    loaderBg: '#9EC600',
 				  		  	});
-		  				} 				
-		  			});		  			
+		  				}
+		  			});
 		  		});
 		  	});
 		  </script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-	
+
 	        	let event ="event=getAccountDetails";
 	        	$.ajax({
 	    			url:"accountServlet",
@@ -595,7 +595,7 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 	    			success:function(data,textStatus,jqXHR){
 	    				for (var key in data) {
 	    				  if (data.hasOwnProperty(key)) {
-	    					  
+
 	    				    $("#staticFname").val(data[0].custFname);
 		    				$("#staticLname").val(data[0].custLname);
 		    				$("#staticEmail").val(data[0].custEmail);
@@ -615,7 +615,7 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 			  });
 		</script>
 		<script>
-		  	$(document).ready(function(){				    
+		  	$(document).ready(function(){
 		  		console.log("page is ready .....");
 		  		$("#myaccountEdit").on('submit',function(event){
 		  			event.preventDefault();
@@ -624,46 +624,46 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 		  				url:"custServlet",
 		  				data:f,
 		  				type:'POST',
-		  				
-		  				success:function(data,textStatus,jqXHR){	
+
+		  				success:function(data,textStatus,jqXHR){
 		  					alert(data)
 		  					if(data.trim() =='done'){
 			  					$.toast({
-			  					    text: "Update Successfully!", 
-			  					    heading: 'Success...', 
+			  					    text: "Update Successfully!",
+			  					    heading: 'Success...',
 			  					    icon: 'success',
-			  					    showHideTransition: 'slide', 
-			  					    allowToastClose: true, 
-			  					    hideAfter: 3000, 
-			  					    stack: 10, 
-			  					    position: 'top-center',            
-			  					    textAlign: 'left',  
-			  					    loader: true,  
+			  					    showHideTransition: 'slide',
+			  					    allowToastClose: true,
+			  					    hideAfter: 3000,
+			  					    stack: 10,
+			  					    position: 'top-center',
+			  					    textAlign: 'left',
+			  					    loader: true,
 			  					    loaderBg: '#24ffb6',
 			  					});
-			  							  				
+
 			  		  		}
 		  				},
 		  				error:function(jqXHR,textStatus,errorThrown){
 							console.log("error...")
 							$.toast({
-				  		  	    text: "Something went wrong on server!", 
-				  		  	    heading: 'Failed...', 
-				  		  	    icon: 'error', 
-				  		  	    showHideTransition: 'slide', 
-				  		  	    allowToastClose: true, 
-				  		  	    hideAfter: 3000, 
-				  		  	    stack: 10, 
-				  		  	    position: 'top-center',         
-				  		  	    textAlign: 'left',  
+				  		  	    text: "Something went wrong on server!",
+				  		  	    heading: 'Failed...',
+				  		  	    icon: 'error',
+				  		  	    showHideTransition: 'slide',
+				  		  	    allowToastClose: true,
+				  		  	    hideAfter: 3000,
+				  		  	    stack: 10,
+				  		  	    position: 'top-center',
+				  		  	    textAlign: 'left',
 				  		  	    loader: true,
-				  		  	    loaderBg: '#9EC600', 
+				  		  	    loaderBg: '#9EC600',
 				  		  	});
-		  				} 				
-		  			});		  			
+		  				}
+		  			});
 		  		});
 		  	});
 		  </script>
-		  
+
 </body>
 </html>
