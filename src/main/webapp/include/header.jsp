@@ -45,7 +45,7 @@
 								
 								if(email != "" && email != null ){	
 				%>|
-                <li class="social"style="color:#ff1717!important">Welcome   <% out.print(name);%></li>|
+                <li class="social"style="color:#ff1717!important"><% out.print(name);%></li>|
                 <li class="social"><a href="logout.jsp" style="color:#5176f0!important" class="nav-link">Logout</a></li>
                 <% 
 						     	}else{
