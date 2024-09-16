@@ -73,6 +73,7 @@
 								class="form-control form-control-lg"
 								placeholder="Enter a valid user id" /> <label
 								class="form-label" for="form3Example3">User Id</label>
+							 <input type="hidden" name="event" value="userlogin">
 						</div>
 
 						<!-- Password input -->
@@ -104,7 +105,7 @@
 		</div>
 		<div
 			class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-			<!-- Copyright -->
+			email<!-- Copyright -->
 			<div class="text-white mb-3 mb-md-0"></div>
 			<!-- Copyright -->
 
@@ -163,7 +164,7 @@
                         success: function(data,textStatus,jqXHR) {
                         	if(data.trim()=="done"){
           		  				alert("login Successful!");
-          		  			    window.location.href = 'index.jsp'; 
+          		  			    window.location.href = 'myAccount.jsp';
           		  			}else if(data.trim()=="notConfirm"){
           		  				$.toast({
         			  		  	    text: "Your Account is Not Activated!", 
