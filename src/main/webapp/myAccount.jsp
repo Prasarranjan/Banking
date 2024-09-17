@@ -523,12 +523,11 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 		  			event.preventDefault();
 					var f=$(this).serialize();
 					$.ajax({
-		  				url:"custServlet",
+		  				url:"custLogin",
 		  				data:f,
 		  				type:'POST',
-		  				dataType:"json",
-		  				success:function(data,textStatus,jqXHR){
-		  					if(data.trim() =='done'){
+		  				success:function(response){
+		  					if(response.trim() ==="done"){
 			  					$.toast({
 			  					    text: "Password Successfully Changed!",
 			  					    heading: 'Success...',
@@ -543,23 +542,11 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 			  					    loaderBg: '#24ffb6',
 			  					});
 			  					$('#validate')[0].reset();
+			  		  		}else if(data.trim() === "error"){
+								  alert("Please enter correct password!")
 			  		  		}else if(data.trim() ==='error1'){
 					  		  		$.toast({
-					  		  	    text: "Old Password & New Password Should not Be Same!",
-					  		  	    heading: 'Failed...',
-					  		  	    icon: 'error',
-					  		  	    showHideTransition: 'slide',
-					  		  	    allowToastClose: true,
-					  		  	    hideAfter: 3000,
-					  		  	    stack: 10,
-					  		  	    position: 'top-center',
-					  		  	    textAlign: 'left',
-					  		  	    loader: true,
-					  		  	    loaderBg: '#9EC600',
-					  		  	});
-			  		  		}else if(data.trim() ==='error2'){
-					  		  		$.toast({
-					  		  	    text: "New Password & Confirm Password Should Be Same!",
+					  		  	    text: "New Password & Confirm Password Must Be Same!",
 					  		  	    heading: 'Failed...',
 					  		  	    icon: 'error',
 					  		  	    showHideTransition: 'slide',

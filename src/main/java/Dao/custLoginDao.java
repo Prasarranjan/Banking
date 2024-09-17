@@ -2,6 +2,7 @@ package Dao;
 
 import Bean.AccountDetails;
 import Bean.Admin;
+import Bean.customer;
 import Util.DbConnection;
 
 import java.sql.Connection;
@@ -74,4 +75,21 @@ public class custLoginDao {
         }
         return A;
     }
+
+    public static int changePassword(customer c) {
+        int result=0;
+        Connection con =DbConnection.getConnection();
+        try{
+            String updateUser="update customer set custPass=? where custId=?";
+            PreparedStatement ps =con.prepareStatement(updateUser);
+            ps.setString(1,c.getCustPass());
+            ps.setInt(2,c.getCustId());
+            result=ps.executeUpdate();
+
+        }
+        catch (Exception f ){
+            f.printStackTrace();
+        }
+        return result;
     }
+}

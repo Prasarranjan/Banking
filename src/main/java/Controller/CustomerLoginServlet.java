@@ -1,6 +1,9 @@
 package Controller;
 
 import Bean.AccountDetails;
+import Bean.Bank;
+import Bean.customer;
+import Dao.BankDao;
 import Dao.custLoginDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -61,8 +64,32 @@ public class CustomerLoginServlet extends HttpServlet {
             } else {
                 out.print("notConfirms");
             }
-        } else {
-            out.print("Invalid event");
+        } else if (event.equals("changePassword")) {
+            System.out.println("haan");
+            String oldPassword = request.getParameter("oldPass");
+            String newPassword = request.getParameter("newPass");
+            String confirmPassword = request.getParameter("confirm");
+            HttpSession session = request.getSession();
+            String password= (String) session.getAttribute("password");
+            int userid = (int) session.getAttribute("userid");
+            if (password.equals(oldPassword)) {
+                if (newPassword.equals(confirmPassword)) {
+                    customer u = new customer();
+                    u.setCustId(userid);
+                    u.setCustPass(newPassword);
+                    int result=custLoginDao.changePassword(u);
+                    if (result>0) {
+                        out.println("done");
+                    }
+                }
+                else{
+                    out.print("error1");
+                }
+            }else {
+                out.print("error");
+                System.out.println("hn ta");
+            }
         }
+
     }
 }
