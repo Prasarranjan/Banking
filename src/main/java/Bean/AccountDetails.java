@@ -12,6 +12,17 @@ public class AccountDetails {
         private double latitude;
         private double longitude;
         private boolean isActive;  // New field
+        private int customerId;
+
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
 
         // Getters and Setters
         public String getCustomerImage() {

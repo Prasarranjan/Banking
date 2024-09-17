@@ -3,6 +3,7 @@ package Dao;
 import Bean.Account;
 import Bean.AccountDetails;
 import Bean.Branch;
+import Bean.userDetails;
 import Util.DbConnection;
 
 import java.sql.Connection;
@@ -72,5 +73,39 @@ public class AccountDao {
         }catch(Exception ex) {ex.printStackTrace();}
         return bankList ;
     }
+
+    public List<userDetails> viewAccountsDetails(int id) {
+        ArrayList<userDetails> bankList=new ArrayList<userDetails>();//Creating Arraylist
+        try {
+            Connection con = DbConnection.getConnection();
+            String sql="SELECT c.custFname,c.custLname,b.bankName,br.branchName,br.Ifsccode,ac.balance,c.custAddress,c.custEmail,c.custPhone,c.custDOB,at.accTypeName,ac.accNumber,ac.openingDate FROM customer c INNER JOIN account ac ON c.custId = ac.custId INNER JOIN branch br ON ac.branchId = br.branchId INNER JOIN Bank b ON br.bankId = b.bankId INNER JOIN accounttype at ON ac.accTypeId = at.accTypeId WHERE c.custId =?;" ;
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs=ps.executeQuery();
+            while(rs.next())
+            {
+                userDetails br = new userDetails();
+                br.setCustFname(rs.getString(1));
+                br.setCustLname(rs.getString(2));
+                br.setBankName(rs.getString(3));
+                br.setBranchName(rs.getString(4));
+                br.setIfscCode(rs.getString(5));
+                br.setBalance(rs.getDouble(6));
+                br.setCustAddress(rs.getString(7));
+                br.setCustEmail(rs.getString(8));
+                br.setCustPhone(rs.getString(9));
+                br.setCustDOB(rs.getString(10));
+                br.setAccTypeName(rs.getString(11));
+                br.setAcNumber(rs.getString(12));
+                br.setOpeningDate(rs.getString(13));
+                bankList.add(br);
+
+            }
+            con.close();
+        }catch(Exception ex) {ex.printStackTrace();}
+        return bankList ;
+    }
 }
 
+//SELECT c.custFname,c.custLname,b.bankName,br.branchName,br.Ifsccode,ac.balance,c.custAddress,c.custEmail,c.custPhone,c.custDOB,at.accTypeName,ac.accNumber,ac.openingDate FROM customer c INNER JOIN account ac ON c.custId = ac.custId INNER JOIN branch br ON ac.branchId = br.branchId INNER JOIN Bank b ON br.bankId = b.bankId INNER JOIN accounttype at ON ac.accTypeId = at.accTypeId WHERE c.custId =52;

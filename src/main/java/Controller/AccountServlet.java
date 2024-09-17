@@ -2,6 +2,7 @@ package Controller;
 
 import Bean.AccountDetails;
 import Bean.customer;
+import Bean.userDetails;
 import Dao.AccountDao;
 import Dao.CustomerDao;
 import Dao.DeviceDao;
@@ -14,9 +15,7 @@ import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
 import jakarta.servlet.http.Part;
 
 
@@ -253,6 +252,20 @@ public class AccountServlet extends HttpServlet {
                 }catch(Exception e) {
                     e.printStackTrace();
                 }
+        } else if (event.equals("getAccountDetails")) {
+            try {
+                AccountDao ad=new AccountDao();
+                System.out.println("aa");
+                HttpSession session = request.getSession();
+                int id= (int) session.getAttribute("userid");
+                List<userDetails> listacc= ad.viewAccountsDetails(id);
+                GsonBuilder gsonBuilder = new GsonBuilder();
+                Gson gson = gsonBuilder.create();
+                String JSONObject = gson.toJson(listacc);
+                out.print(JSONObject);
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
         }
     }
             }

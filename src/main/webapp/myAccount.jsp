@@ -102,55 +102,79 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 						<div class="card mb-4" style="width: 800px;">
 							<div class="tab-content v-pills-tabContent">
 							   <div class="tab-pane fade show active" id="Account" role="tabpanel" aria-labelledby="aa">
-							  		<div class="p-4">
-							  		  <form id="myaccountEdit">
-							  			 <div class="form-group  row">
-										    <label for="staticFname" class="col-sm-2 col-form-label">Name</label>
-										    <div class="col-sm-5 mb-3 mb-md-0">
+								   <div class="container-fluid mt-5">
+									   <div class="row">
+										   <div class="col-md-12">
+											   <div class="p-4 border rounded bg-light shadow-sm">
+												   <h3 class="mb-4">Update Account Details</h3>
+												   <form id="myaccountEdit">
+													   <div class="form-row">
+														   <div class="form-group col-md-4">
+															   <label for="custFname">First Name</label>
+															   <input type="text" name="custFname" readonly class="form-control" id="custFname">
+															   <input type="hidden"  class="form-control" name="event" value="updateCustBasicDetails">
+														   </div>
+														   <div class="form-group col-md-4">
+															   <label for="custLname">Last Name</label>
+															   <input type="text" name="custLname" readonly class="form-control" id="custLname">
+														   </div>
+														   <div class="form-group col-md-4">
+															   <label for="custEmail">Email</label>
+															   <input type="email" name="custEmail" readonly  class="form-control" id="custEmail">
+														   </div>
+													   </div>
+													   <div class="form-row">
+														   <div class="form-group col-md-4">
+															   <label for="custPhone">Phone</label>
+															   <input type="text" name="custPhone" readonly  class="form-control" id="custPhone">
+														   </div>
+														   <div class="form-group col-md-4">
+															   <label for="custAddress">Address</label>
+															   <input type="text" name="custAddress" readonly class="form-control" id="custAddress">
+														   </div>
+														   <div class="form-group col-md-4">
+															   <label for="brname">Branch Name</label>
+															   <input type="text" readonly class="form-control" id="brname">
+														   </div>
+													   </div>
+													   <div class="form-row">
+														   <div class="form-group col-md-4">
+															   <label for="bankName">Bank Name</label>
+															   <input type="text" readonly class="form-control" id="bankName">
+														   </div>
+														   <div class="form-group col-md-4">
+															   <label for="ifscCode">IFSC Code</label>
+															   <input type="text" readonly class="form-control" id="ifscCode">
+														   </div>
+														   <div class="form-group col-md-4">
+															   <label for="balance">Balance</label>
+															   <input type="text" readonly class="form-control" id="balance1">
+														   </div>
+													   </div>
+													   <div class="form-row">
+														   <div class="form-group col-md-4">
+															   <label for="custDOB">Date of Birth</label>
+															   <input type="date" name="custDOB" readonly class="form-control" id="custDOB">
+														   </div>
+														   <div class="form-group col-md-4">
+															   <label for="accTypeName">Account Type</label>
+															   <input type="text" readonly class="form-control" id="accTypeName">
+														   </div>
+														   <div class="form-group col-md-4">
+															   <label for="acNumber">Account Number</label>
+															   <input type="text" readonly class="form-control" id="acNumber">
+														   </div>
+													   </div>
 
-										      <input type="text" name="custFname" class="form-control" id="staticFname" >
-										       <input type="hidden"  class="form-control" name="event" value="updateCustBasicDetails">
-										    </div>
-									        <label for="staticLname" class=" col-form-label"></label>
-										    <div class="col-sm-5  mb-3 mb-md-0">
-										        <input type="text"  name="custLname"  class="form-control" id="staticLname" >
-										    </div>
-									  </div>
-									  <div class="form-group  row">
-									    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-									    <div class="col-sm-10">
-									      <input type="text"  name="custEmail"  class="form-control" id="staticEmail" >
-									    </div>
-									  </div>
-									  <div class="form-group row">
-									    <label for="inputPhone" class="col-sm-2 col-form-label">Phone</label>
-									    <div class="col-sm-10">
-									      <input type="text"  name="custPhone"  class="form-control" id="inputPhone" >
-									    </div>
-									  </div>
-									  <div class="form-group row">
-									    <label for="address" class="col-sm-2 col-form-label">Address</label>
-									    <div class="col-sm-10">
-									      <input type="text"  name="address"  class="form-control" id="address" >
-									    </div>
-									  </div>
-									  <div class="form-group row">
-									    <label for="branchName" class="col-sm-2 col-form-label">Branch Name</label>
-									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control" id="branchName" >
-									    </div>
-									  </div>
-									  <div class="form-group row">
-									    <label for="acctype" class="col-sm-2 col-form-label">Account Type</label>
-									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control" id="acctype" >
-									    </div>
-									  </div>
-									  <div class="form-group row pl-1">
-									    <input type="Submit"  class="btn btn-primary" value="Update" >
-									  </div>
-									</form>
-							  		</div>
+													   <div class="form-group">
+														   <button type="submit" class="btn btn-primary">Request A Update</button>
+													   </div>
+												   </form>
+											   </div>
+										   </div>
+									   </div>
+								   </div>
+
 								</div>
 							  <div class="tab-pane fade" id="Password" role="tabpanel" aria-labelledby="bb">
 									<div class="p-4">
@@ -169,7 +193,7 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 										    </div>
 									  </div>
 									  <div class="form-group  row">
-									    <label for="confirmpass" class="col-sm-2 col-form-label">Confirm Pass</label>
+									    <label for="confirm" class="col-sm-2 col-form-label">Confirm Pass</label>
 									    <div class="col-sm-10">
 									      <input type="text"  class="form-control" name="confirm" placeholder="Confirm Password" id="confirm" required>
 									    </div>
@@ -240,7 +264,7 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 						     </div>
 							 <div class="tab-pane fade" id="Balance" role="tabpanel" aria-labelledby="dd">
 									<div class="pt-3 p-5" style="font-size:30px; color:blue;">
-										<h1>Your Account Balance is : $ <b id="balance"></b></h1>
+										<h1>Available Balance INR <b><%=session.getAttribute("balance")%></b></h1>
 									</div>
 							 </div>
 						      <div class="tab-pane fade" id="Lone" role="tabpanel" aria-labelledby="ee">
@@ -588,22 +612,29 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 
 	        	let event ="event=getAccountDetails";
 	        	$.ajax({
-	    			url:"accountServlet",
+	    			url:"AccountServlet",
 	    			data:event,
 	    			type:"POST",
 	    			dataType:"json",
 	    			success:function(data,textStatus,jqXHR){
 	    				for (var key in data) {
 	    				  if (data.hasOwnProperty(key)) {
+                           console.log(data[key])
+							  console.log(data[key].branchName)
+	    				    $("#custFname").val(data[key].custFname);
+		    				 $("#custLname").val(data[key].custLname);
+		    				$("#custEmail").val(data[key].custEmail);
+		    				$("#custDOB").val(data[key].custDOB);
+		    				$("#custAddress").val(data[key].custAddress);
+		    				$("#custPhone").val(data[key].custPhone);
+		    				$("#bankName").val(data[key].bankName);
+		    				$("#brname").val(data[key].branchName);
+		    				$("#balance1").val(data[key].balance);
+		    				$("#accTypeName").val(data[key].accTypeName);
+		    				$("#ifscCode").val(data[key].ifscCode);
+		    				$("#acNumber").val(data[key].acNumber);
 
-	    				    $("#staticFname").val(data[0].custFname);
-		    				$("#staticLname").val(data[0].custLname);
-		    				$("#staticEmail").val(data[0].custEmail);
-		    				$("#inputPhone").val(data[0].custPhone);
-		    				$("#address").val(data[0].custAddress);
-		    				$("#branchName").val(data[0].branchName);
-		    				$("#acctype").val(data[0].accTypeName);
-		    				$("#balance").html(data[0].balance);
+
 	    				  }
 	    				}
 	    			},

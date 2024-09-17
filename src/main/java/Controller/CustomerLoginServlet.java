@@ -51,6 +51,7 @@ public class CustomerLoginServlet extends HttpServlet {
                     session.setAttribute("accnumber", admin.getAccountNumber());
                     session.setAttribute("openingdate", admin.getOpeningDate());
                     session.setAttribute("balance", admin.getBalance());
+                    session.setAttribute("userid", admin.getCustomerId());
 
                     out.println("done");
                 } else {
