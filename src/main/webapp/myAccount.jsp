@@ -88,7 +88,7 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 							  <a class="nav-link active" id="aa" data-toggle="pill" href="#Account" role="tab" aria-controls="a" aria-selected="true">My Account</a>
 							  <a class="nav-link" id="bb" data-toggle="pill" href="#Password" role="tab" aria-controls="b" aria-selected="false">Change Password</a>
 							  <a class="nav-link" id="cc" data-toggle="pill" href="#Transfer" role="tab" aria-controls="c" aria-selected="false">Transfer</a>
-							  <a class="nav-link" id="dd" data-toggle="pill" href="#Balance" role="tab" aria-controls="d" aria-selected="false">Check Balance</a>
+								<a class="nav-link" id="dd" href="confirmuser.jsp" role="tab" aria-controls="d" aria-selected="false">Check Balance</a>
 							   <a class="nav-link " id="ee" data-toggle="pill" href="#Lone" role="tab" aria-controls="e" aria-selected="false">Apply Loan</a>
 							  <a class="nav-link" id="ff" data-toggle="pill" href="#Credit" role="tab" aria-controls="f" aria-selected="false">Credit Score</a>
 							  <a class="nav-link" id="gg" data-toggle="pill" href="#history" role="tab" aria-controls="g" aria-selected="false">History</a>
@@ -262,11 +262,11 @@ if (session.getAttribute("username") == null || session.getAttribute("username")
 									  </form>
 									  </div>
 						     </div>
-							 <div class="tab-pane fade" id="Balance" role="tabpanel" aria-labelledby="dd">
-									<div class="pt-3 p-5" style="font-size:30px; color:blue;">
-										<h1>Available Balance INR <b><%=session.getAttribute("balance")%></b></h1>
-									</div>
-							 </div>
+<%--							 <div class="tab-pane fade" id="Balance" role="tabpanel" aria-labelledby="dd">--%>
+<%--									<div class="pt-3 p-5" style="font-size:30px; color:blue;">--%>
+<%--										<h1>Available Balance INR <b><%=session.getAttribute("balance")%></b></h1>--%>
+<%--									</div>--%>
+<%--							 </div>--%>
 						      <div class="tab-pane fade" id="Lone" role="tabpanel" aria-labelledby="ee">
 
 						     </div>

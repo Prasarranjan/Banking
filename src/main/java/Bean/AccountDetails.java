@@ -14,6 +14,16 @@ public class AccountDetails {
         private boolean isActive;  // New field
         private int customerId;
 
+    public String getCustomerPassword() {
+        return customerPassword;
+    }
+
+    public void setCustomerPassword(String customerPassword) {
+        this.customerPassword = customerPassword;
+    }
+
+    private String customerPassword;
+
 
     public int getCustomerId() {
         return customerId;

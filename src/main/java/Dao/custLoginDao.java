@@ -49,7 +49,7 @@ public class custLoginDao {
         AccountDetails A = null;
         try (Connection con = DbConnection.getConnection();)
         {
-            String query = "SELECT c.custId,c.custImg AS custImg,CONCAT(c.custFname, ' ', c.custLname) AS customername, b.branchName AS branchName, at.accTypeName AS accTypeName, a.accNumber AS accNumber,a.openingDate AS openingDate, a.balance AS balance, a.acctStatus AS acctStatus  FROM account a JOIN customer c ON a.custId = c.custId JOIN branch b ON a.branchId = b.branchId JOIN mobiledevice md ON c.deviceId = md.deviceId JOIN accounttype at ON a.accTypeId = at.accTypeId where c.custUserId=? and c.custPass=?";
+            String query = "SELECT c.custPass,c.custId,c.custImg AS custImg,CONCAT(c.custFname, ' ', c.custLname) AS customername, b.branchName AS branchName, at.accTypeName AS accTypeName, a.accNumber AS accNumber,a.openingDate AS openingDate, a.balance AS balance, a.acctStatus AS acctStatus  FROM account a JOIN customer c ON a.custId = c.custId JOIN branch b ON a.branchId = b.branchId JOIN mobiledevice md ON c.deviceId = md.deviceId JOIN accounttype at ON a.accTypeId = at.accTypeId where c.custUserId=? and c.custPass=?";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, userid);
             ps.setString(2, password);
@@ -57,6 +57,7 @@ public class custLoginDao {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 A = new AccountDetails();
+                A.setCustomerPassword(rs.getString("custPass"));
                 A.setCustomerId(rs.getInt("custId"));
                 A.setCustomerName(rs.getString("customername"));
                 A.setCustomerImage(rs.getString("custImg"));
