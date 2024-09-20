@@ -92,7 +92,7 @@
                     <h3 class="card-title mb-0">Account Balance</h3>
                 </div>
                 <div class="card-body">
-                    <h4 class="balance-display">Your Current Balance:</h4>
+                    <h4 class="balance-display">Your Current Balance=</h4>
                     <h4 class="balance-display" id="balance">INR <%=session.getAttribute("balance")%></h4>
                     <button class="btn btn-check" onClick="window.location.href='myAccount.jsp'">Go Back</button>
                 </div>
