@@ -22,7 +22,7 @@ public class DbConnection {
     }
 
     public static String Path() {
-        String Path="/home/prasar/Documents/yourBank/src/main/webapp/admin/assets";
+        String Path="C:/Users/there/IdeaProjects/Banking/src/main/webapp/admin/assets";
         return Path;
     }
 
